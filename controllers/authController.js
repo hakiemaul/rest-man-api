@@ -7,7 +7,6 @@ module.exports={
     let finalResult = {
       id: null,
       username: null,
-      password: null,
       role:null,
       token: null,
       success: false,
@@ -24,43 +23,31 @@ module.exports={
 		.then(response=>{
 			if(bcrypt.compareSync(req.body.password, response.dataValues.password)){
 				let id_role = response.dataValues.id_role
-				// let responseRoles = null
-				// models.Role.findAll({})
-				// .then(responseRole=>{
-				// 	console.log(responseRole)
-				// })
-				// .catch(err=>{
-				// 	console.log(err)
-				// })
+				models.Role.findAll({})
+				.then(responseRole=>{
+					let role = ''
+					responseRole.map(roleValue=>{
+						if(roleValue.dataValues.id === id_role){
+							role = roleValue.dataValues.type
+							return role
+						}
+					})
+					let token = jwt.sign({
+						username: response.dataValues.username,
+						role: role
+					}, 'secret')
 
-				// console.log(responseRoles)
-				let role = ''
-				switch(id_role){
-					case 1:
-						role = 'Admin';
-					break;
-
-					case 2:
-						role = 'Waiter';
-					break;
-
-					case 3 :
-						role = 'Cashier'
-					break;
-				}
-
-				let token = jwt.sign({
-					username: response.dataValues.username,
-					role: role
-				}, 'secret')
-
-				finalResult.id = response.dataValues.id
-				finalResult.username = response.dataValues.username
-				finalResult.role = role
-				finalResult.token = token
-				finalResult.success = true
-				finalResult.message = 'Login Success'
-				res.json(finalResult)
+					finalResult.id = response.dataValues.id
+					finalResult.username = response.dataValues.username
+					finalResult.role = role
+					finalResult.token = token
+					finalResult.success = true
+					finalResult.message = 'Login Success'
+					res.json(finalResult)
+				})
+				.catch(err=>{
+					console.log(err)
+				})
 			}
 		}) 
 		.catch(err=>{
