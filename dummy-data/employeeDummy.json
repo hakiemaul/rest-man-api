@@ -1,5 +1,0 @@
-[
-	{"username":"admin","password":"admin","id_role":"1", "createdAt":"2017-05-04T19:43:48.271Z","updatedAt":"2017-05-04T19:43:48.271Z"},
-	{"username":"waiters","password":"waiters","id_role":"2", "createdAt":"2017-05-04T19:43:48.271Z","updatedAt":"2017-05-04T19:43:48.271Z"}, 
-	{"username":"cashier","password":"cashier","id_role":"3", "createdAt":"2017-05-04T19:43:48.271Z","updatedAt":"2017-05-04T19:43:48.271Z"}
-]

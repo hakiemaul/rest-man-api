@@ -10,7 +10,7 @@ module.exports = {
 			res.json(err)
 		})
 	},
-	addOrder:(req, res)=>{
+	addOrdering:(req, res)=>{
 		let finalResult = {
 			id: null,
 			no_meja: null,
@@ -19,12 +19,14 @@ module.exports = {
 			message: ''
 		}
 		models.Order.create({
-			no_meja: req.body.no_meja
+			no_meja: req.body.no_meja,
+			total_price: req.body.total_price
 		})
 		.then(response=>{
+			
 			finalResult.id = response.dataValues.id
 			finalResult.no_meja = response.dataValues.no_meja
-			finalResult.total_price = 0
+			finalResult.total_price = response.dataValues.total_price
 			finalResult.success = true
 			finalResult.message = 'Order Added'
 			res.json(finalResult)
