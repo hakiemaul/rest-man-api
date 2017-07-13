@@ -120,7 +120,7 @@ describe('Menu Test', ()=>{
 			});
 		});
 
-		it('Should be return success false when trying Register if field price is empty', (done)=>{
+		it('Should be return success false when trying Add menu if field price is empty', (done)=>{
 			chai.request(server)
 			.post('/menu/add')
 			.send({
