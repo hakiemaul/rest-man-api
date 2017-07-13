@@ -5,12 +5,16 @@
   "main": "app.js",
   "repository": "https://github.com/hakiemaul/rest-man-api.git",
   "license": "MIT",
+  "scripts": {
+    "test": "NODE_ENV=test mocha"
+  },
   "dependencies": {
     "bcrypt": "^1.0.2",
     "body-parser": "^1.17.2",
     "chai": "^4.1.0",
     "chai-http": "^3.0.0",
     "cors": "^2.8.3",
+    "dotenv": "^4.0.0",
     "express": "^4.15.3",
     "jsonwebtoken": "^7.4.1",
     "mocha": "^3.4.2",

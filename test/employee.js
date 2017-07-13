@@ -13,7 +13,7 @@ describe('Employee Test', ()=>{
     models.Employee.create({
 				username: 'employee',
 				password: 'employee',
-				role: 2,
+				id_role: 2
     },(err, res)=>{
     	done()
     })
@@ -63,7 +63,7 @@ describe('Employee Test', ()=>{
 			.send({
 				username: 'employee1',
 				password: 'employee1',
-				role: 2,
+				id_role: 2
 			})
 			.end((err, result)=>{
 				if(err){
@@ -74,7 +74,7 @@ describe('Employee Test', ()=>{
 					res.body.should.have.property('id');
 					res.body.should.have.property('username');
 					res.body.should.have.property('password');
-					res.body.should.have.property('role');
+					res.body.should.have.property('id_role');
 					done();
 				}
 			});
@@ -86,7 +86,7 @@ describe('Employee Test', ()=>{
 			.send({
 				username: 'employee2',
 				password: 'employee2',
-				role: 3
+				id_role: 3
 			})
 			.end((err, res)=>{
 				if(err){
@@ -106,7 +106,7 @@ describe('Employee Test', ()=>{
 			.send({
 				username: 'employee3',
 				password: '',
-				role: 2
+				id_role: 2
 			})
 			.end((err, res)=>{
 				if(err){
@@ -126,7 +126,7 @@ describe('Employee Test', ()=>{
 			.send({
 				username: 'employee3',
 				password: '',
-				role: 2
+				id_role: 2
 			})
 			.end((err, res)=>{
 				if(err){
@@ -139,13 +139,13 @@ describe('Employee Test', ()=>{
 				}
 			});
 		});
-		it('Should be return success false when trying Register if field role is empty', (done)=>{
+		it('Should be return success false when trying Register if field id_role is empty', (done)=>{
 			chai.request(server)
 			.post('/employee/add')
 			.send({
 				username: 'employee3',
 				password: '',
-				role: 2
+				id_role: 2
 			})
 			.end((err, res)=>{
 				if(err){
@@ -165,7 +165,7 @@ describe('Employee Test', ()=>{
 			models.Employee.create({
 				username: 'employee3',
 				password: 'employee3',
-				role: 3
+				id_role: 3
 			})
 			.then((err, query)=>{
 				chai.request(server)
@@ -173,7 +173,7 @@ describe('Employee Test', ()=>{
 				.send({
 					username: 'Waiter3',
 					password: 'waiter3'
-					role: 2,
+					id_role: 2,
 					updatedAt: new Date()
 				})
 				.end((err,res)=>{
@@ -189,11 +189,11 @@ describe('Employee Test', ()=>{
 			});
 		});
 
-		it('Should be return success false when trying to update data employee if field username, password, or role is empty', (done)=>{
+		it('Should be return success false when trying to update data employee if field username, password, or id_role is empty', (done)=>{
 			models.Employee.create({
 				username: 'employee4',
 				password: 'employee4',
-				role: 3
+				id_role: 3
 			})
 			.then((err, query)=>{
 				chai.request(server)
@@ -201,7 +201,7 @@ describe('Employee Test', ()=>{
 				.send({
 					username: 'Waiter4',
 					password: ''
-					role: 2,
+					id_role: 2,
 					updatedAt: new Date()
 				})
 				.end((err,res)=>{
@@ -223,7 +223,7 @@ describe('Employee Test', ()=>{
 			models.Employee.create({
 				username: 'employee_delete',
 				password: 'employee_delete',
-				role: 3
+				id_role: 3
 			})
 			.then((err, query)=>{
 				chai.request(server)
