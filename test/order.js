@@ -13,7 +13,8 @@ describe('Order Test', ()=>{
     models.Order.create({
     	total_price: 50000
 			no_meja: 'B1',
-			id_employee: 2
+			id_employee: 2,
+			status: true
     },(err, res)=>{
     	done()
     })
@@ -63,7 +64,8 @@ describe('Order Test', ()=>{
 			.send({
 	    	total_price: 50000
 				no_meja: 'B1',
-				id_employee: 2
+				id_employee: 2,
+				status: true
 			})
 			.end((err, result)=>{
 				if(err){
@@ -86,7 +88,8 @@ describe('Order Test', ()=>{
 			.send({
 	    	total_price: 50000
 				no_meja: 'B1',
-				id_employee: 2
+				id_employee: 2,
+				status: true
 			})
 			.end((err, res)=>{
 				if(err){
@@ -107,6 +110,7 @@ describe('Order Test', ()=>{
 	    	total_price: 50000
 				no_meja: null,
 				id_employee: 2
+				status: true
 			})
 			.end((err, res)=>{
 				if(err){
@@ -126,7 +130,8 @@ describe('Order Test', ()=>{
 			models.Order.create({
 	    	total_price: 50000
 				no_meja: 'A1',
-				id_employee: 2
+				id_employee: 2,
+				status: true
 			})
 			.then((err, query)=>{
 				chai.request(server)
@@ -134,7 +139,8 @@ describe('Order Test', ()=>{
 				.send({
 		    	total_price: 50000
 					no_meja: 'B1',
-					id_employee: 2
+					id_employee: 2,
+					status: true
 				})
 				.end((err,res)=>{
 					if(err){
@@ -154,6 +160,7 @@ describe('Order Test', ()=>{
 	    	total_price: 50000
 				no_meja: 'B1',
 				id_employee: 2
+				status: true
 			})
 			.then((err, query)=>{
 				chai.request(server)
@@ -162,6 +169,7 @@ describe('Order Test', ()=>{
 		    	total_price: 50000
 					no_meja: null,
 					id_employee: 2,
+					status: true,
 					updatedAt: new Date()
 				})
 				.end((err,res)=>{
@@ -183,7 +191,8 @@ describe('Order Test', ()=>{
 			models.Order.create({
 	    	total_price: 50000
 				no_meja: 'B1',
-				id_employee: 2
+				id_employee: 2,
+				status: true
 			})
 			.then((err, query)=>{
 				chai.request(server)
