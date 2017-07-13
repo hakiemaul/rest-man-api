@@ -100,9 +100,9 @@ describe('Transaction Test', ()=>{
 			});
 		});
 
-		it('Should be return success false when trying Register if field pay is empty', (done)=>{
+		it('Should be return success false when trying Add if field pay is empty', (done)=>{
 			chai.request(server)
-			.post('/Transaction/add')
+			.post('/transaction/add')
 			.send({
 				id_order: 2,
 				pay: null,
@@ -119,107 +119,5 @@ describe('Transaction Test', ()=>{
 				}
 			});
 		});
-
-		it('Should be return success false when trying Register if field price is empty', (done)=>{
-			chai.request(server)
-			.post('/Transaction/add')
-			.send({
-				name: 'Test Transaction Create success true',
-				description: 'Test Transaction Create Description success true',
-				price: null
-			})
-			.end((err, res)=>{
-				if(err){
-					res.status.have(500);
-					done(err);
-				}else{
-					res.status.have(200);
-					res.body.success.sould.be.equal(false);
-					done();
-				}
-			});
-		});
-	});
-
-	describe('Update - Update data Transaction',()=>{
-		it('Should be return success true when trying to update data Transaction', (done)=>{
-			models.Transaction.create({
-				name: 'Transaction update',
-				description: 'Transaction update Description',
-				price: 15000
-			})
-			.then((err, query)=>{
-				chai.request(server)
-				.put('/Transaction/'+query.id)
-				.send({
-					name: 'Transaction update baru',
-					description: 'Transaction update Description baru',
-					price: 15000,
-					updatedAt: new Date()
-				})
-				.end((err,res)=>{
-					if(err){
-						res.status.have(500);
-						done(err);
-					}else{
-						res.status.have(200);
-						res.body.success.should.be.equal(true);
-						done();
-					}
-				});
-			});
-		});
-
-		it('Should be return success false when trying to update data Transaction if field name is empty', (done)=>{
-			models.Transaction.create({
-				name: 'Transaction Update Baru False',
-				description: 'Transaction update Description baru',
-				price: 15000
-			})
-			.then((err, query)=>{
-				chai.request(server)
-				.put('/Transaction/'+query.id)
-				.send({
-					name: '',
-					description: 'Transaction update Description baru',
-					price: 15000,
-					updatedAt: new Date()
-				})
-				.end((err,res)=>{
-					if(err){
-						res.status.have(500);
-						done(err);
-					}else{
-						res.status.have(200);
-						res.body.success.should.be.equal(false);
-						done();
-					}
-				});
-			});
-		});
-	});
-
-	describe('Delete - Delete data Transaction', ()=>{
-		it('Should be return success true when trying to delete Transaction',(done)=>{
-			models.Transaction.create({
-				name: 'Transaction Makan Delete',
-				description: 'Transaction update Description baru',
-				price: 15000
-			})
-			.then((err, query)=>{
-				chai.request(server)
-				.delete('/Transaction/'+query.id)
-				.end((err,res)=>{
-					if(err){
-						res.status.have(500);
-						done(err);
-					}else{
-						res.status.have(200);
-						res.body.success.should.be.equal(true);
-						done();
-					}
-				});
-			});
-		})
 	});
 });
