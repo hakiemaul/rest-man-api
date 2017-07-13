@@ -19,6 +19,7 @@ describe('Server test', ()=>{
 				}else {
 					res.should.have.status(200);
 					res.body.status.should.to.equal('running');
+					done();
 				}
 			});
 		});
@@ -35,6 +36,7 @@ describe('Server test', ()=>{
 				}else {
 					res.should.have.status(200);
 					res.body.database.should.to.equal('connected');
+					done();
 				}
 			});
 		});
