@@ -32,7 +32,7 @@ describe('Category Test',()=>{
 	    		done(err);
 	    	}else{
 	    		res.status.have(200);
-	    		res.body.length.should.equal(1);
+	    		res.length.should.equal(1);
 	    		done();
 	    	}
 	    });
