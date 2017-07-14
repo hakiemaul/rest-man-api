@@ -3,6 +3,17 @@ const models = require('../models');
 module.exports = {
 	getAllOrders: (req, res)=>{
 		models.Order.findAll({
+		  include: [
+		  	{
+			    model: models.Employee
+			  },
+			  {
+			    model: models.Menu
+			  }
+			],
+			order: [
+	    	['createdAt', 'DESC']
+	    ]
 		})
 		.then(response=>{
 			res.json(response)
@@ -16,7 +27,6 @@ module.exports = {
 			id: null,
 			no_meja: null,
 			total_price: null,
-			menu_order: [],
 			success: false,
 			message: ''
 		}
@@ -61,7 +71,6 @@ module.exports = {
 							total : responseMenuOrder.dataValues.total,
 							note : responseMenuOrder.dataValues.note
 						}					
-						menu_order.push(objMenuOrder)
 					})
 				})
 			})

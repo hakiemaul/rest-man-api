@@ -17,6 +17,7 @@ module.exports = function(sequelize, DataTypes) {
     })
 
     Order.hasOne(models.Transaction, {foreignKey:'id_order'})
+    Order.belongsTo(models.Employee, {foreignKey:'id_employee'})
   }
   return Order;
 };

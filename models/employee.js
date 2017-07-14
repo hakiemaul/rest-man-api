@@ -8,6 +8,7 @@ module.exports = function(sequelize, DataTypes) {
 
   Employee.associate = (models)=>{
     Employee.belongsTo(models.Role, {foreignKey: 'id_role'})
+    Employee.hasMany(models.Order, {foreignKey:'id_employee'})
   }
   return Employee;
 };
