@@ -79,7 +79,7 @@ module.exports = {
 			finalResult.record = response
 			finalResult.success = true
 			finalResult.message = 'Category has been delete'
-			res.json('finalResult')
+			res.json(finalResult)
 		})
 		.catch(err=>{
 			res.json(err)

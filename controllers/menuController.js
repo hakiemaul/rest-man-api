@@ -3,7 +3,11 @@ const bcrypt = require('bcrypt');
 
 module.exports = {
 	getAllMenu : (req, res)=>{
-		models.Menu.findAll()
+		models.Menu.findAll({
+			include: [
+		     { model: models.Category}
+		  ]
+		})
 		.then(response=>{
 			res.json(response);
 		})
@@ -17,7 +21,7 @@ module.exports = {
       name: null,
       description: null,
       price:null,
-      id_category:null,
+      category:null,
       success: false,
       message: ''
     }
@@ -31,26 +35,26 @@ module.exports = {
 		.then(response=>{
 			let id_category = response.dataValues.id_category
 			models.Category.findAll({})
-				.then(responseCategory=>{
-					let Category = ''
-					responseCategory.map(CategoryValue=>{
-						if(CategoryValue.dataValues.id === id_Category){
-							Category = CategoryValue.dataValues.name
-							return Category
-						}
-					})
-					finalResult.id = response.dataValues.id;
-					finalResult.name = response.dataValues.name;
-					finalResult.description = response.dataValues.description;
-					finalResult.price = response.dataValues.price;
-					finalResult.Category = Category
-					finalResult.success = true
-					finalResult.message = "Menu has been added"
-					res.json(finalResult)
+			.then(responseCategory=>{
+				let Category = ''
+				responseCategory.map(CategoryValue=>{
+					if(CategoryValue.dataValues.id === id_category){
+						Category = CategoryValue.dataValues.name
+						return Category
+					}
 				})
-				.catch(err=>{
-					console.log(err)
-				})
+				finalResult.id = response.dataValues.id;
+				finalResult.name = response.dataValues.name;
+				finalResult.description = response.dataValues.description;
+				finalResult.price = response.dataValues.price;
+				finalResult.category = Category
+				finalResult.success = true
+				finalResult.message = "Menu has been added"
+				res.json(finalResult)
+			})
+			.catch(err=>{
+				console.log(err)
+			})
 		})
 		.catch(err=>{
 			res.json(err)
@@ -76,7 +80,7 @@ module.exports = {
 	      name: req.body.name || query.dataValues.name,
 	      description: req.body.description || query.dataValues.description,
 	      price:req.body.price || query.dataValues.price,
-	      id_category:req.body.id_category || query.dataValues.id_category
+	      id_category:req.body.id_category || query.dataValues.id_category,
         createdAt : query.dataValues.createdAt,
         updatedAt : new Date()
       })

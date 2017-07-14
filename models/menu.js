@@ -5,12 +5,19 @@ module.exports = function(sequelize, DataTypes) {
     description: DataTypes.STRING,
     price: DataTypes.INTEGER,
     id_category: DataTypes.INTEGER
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
-    }
   });
+
+  Menu.associate = (models)=>{
+    Menu.belongsTo(models.Category, {foreignKey: 'id_category'})
+    Menu.belongsToMany(models.Order, {
+      through: {
+        model: models.MenuOrder,
+        unique: false
+      },
+      foreignKey: 'id_menu',
+      constraints: false
+    })
+
+  }
   return Menu;
 };

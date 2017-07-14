@@ -1,13 +1,15 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const cors = require('cors');
-var sequelize = require('sequelize');
+const sequelize = require('sequelize');
 
-var employees = require('./routes/employee');
-var roles = require('./routes/role');
-var auth = require('./routes/auth');
-var categories = require('./routes/category');
-var menu = require('./routes/menu');
+const employees = require('./routes/employee');
+const roles = require('./routes/role');
+const auth = require('./routes/auth');
+const categories = require('./routes/category');
+const menu = require('./routes/menu');
+const orders = require('./routes/order');
+const transactions = require('./routes/transaction');
 
 const app = express();
 
@@ -21,6 +23,8 @@ app.use('/role', roles);
 app.use('/auth', auth);
 app.use('/category', categories);
 app.use('/menu', menu);
+app.use('/order', orders);
+app.use('/transaction', transactions);
 
 
 app.listen(app.get('port'),()=>{

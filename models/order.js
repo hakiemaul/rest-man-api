@@ -4,12 +4,19 @@ module.exports = function(sequelize, DataTypes) {
     id_employee: DataTypes.INTEGER,
     no_meja: DataTypes.STRING,
     total_price: DataTypes.INTEGER
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
-    }
   });
+
+  Order.associate = (models)=>{
+    Order.belongsToMany(models.Menu, {
+      through: {
+        model: models.MenuOrder,
+        unique: false,
+      },
+      foreignKey: 'id_order',
+      constraints: false
+    })
+
+    Order.hasOne(models.Transaction, {foreignKey:'id_order'})
+  }
   return Order;
 };

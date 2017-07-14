@@ -4,12 +4,10 @@ module.exports = function(sequelize, DataTypes) {
     id_order: DataTypes.INTEGER,
     pay: DataTypes.INTEGER,
     refund: DataTypes.INTEGER
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
-    }
   });
+
+  Transaction.associate = (models)=>{
+    Transaction.belongsTo(models.Order, {foreignKey:'id_order'})
+  }
   return Transaction;
 };

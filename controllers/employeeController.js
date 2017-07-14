@@ -3,7 +3,11 @@ const bcrypt = require('bcrypt');
 
 module.exports = {
 	getAllEmployee : (req, res)=>{
-		models.Employee.findAll()
+		models.Employee.findAll({
+			include: [
+		     { model: models.Role}
+		  ]
+		})
 		.then(response=>{
 			res.json(response);
 		})

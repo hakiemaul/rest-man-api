@@ -6,12 +6,6 @@ module.exports = function(sequelize, DataTypes) {
     qty_item: DataTypes.INTEGER,
     total: DataTypes.INTEGER,
     note: DataTypes.STRING
-  }, {
-    classMethods: {
-      associate: function(models) {
-        // associations can be defined here
-      }
-    }
   });
   return MenuOrder;
 };
