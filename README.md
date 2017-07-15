@@ -448,3 +448,103 @@ https://localhost:3000/order
   }
 ]
 ```
+
+------------
+
+## Transaction
+
+### Transaction - Create the Transaction
+
+```sh
+POST
+
+https://localhost:3000/transaction
+```
+
+##### Request Example
+
+```
+{
+  "id_order":3,
+  "pay":50000,
+  "refund":18000
+}
+```
+
+##### Response
+
+```
+{
+  "id": 2,
+  "id_order": 3,
+  "pay": 50000,
+  "refund": 18000,
+  "success": true,
+  "message": "Transaction has been added"
+}
+```
+
+### Order - Get All the Order
+
+```sh
+GET
+
+https://localhost:3000/order
+```
+
+##### Response
+
+```
+[
+    {
+        "id": 2,
+        "id_order": 3,
+        "pay": 50000,
+        "refund": 18000,
+        "createdAt": "2017-07-15T13:42:25.014Z",
+        "updatedAt": "2017-07-15T13:42:25.014Z",
+        "Order": {
+            "id": 3,
+            "id_employee": 2,
+            "no_meja": "B1",
+            "total_price": 32000,
+            "createdAt": "2017-07-15T13:37:39.112Z",
+            "updatedAt": "2017-07-15T13:37:39.112Z",
+            "Employee": {
+                "id": 2,
+                "username": "waiters",
+                "password": "$2a$10$aTAe0z2IvomHMCaIa.znVOp2Ebd6.5h3NsGUg7SaQqGQEEBs6Wj1C",
+                "id_role": 2,
+                "createdAt": "2017-07-15T08:43:25.774Z",
+                "updatedAt": "2017-07-15T08:43:25.774Z"
+            },
+            "Menus": [
+                {
+                    "id": 1,
+                    "name": "Ayam Bakar",
+                    "description": "Ayam Descript Bakar",
+                    "price": 16000,
+                    "id_category": 1,
+                    "createdAt": "2017-07-15T08:47:05.087Z",
+                    "updatedAt": "2017-07-15T08:47:05.087Z",
+                    "MenuOrder": {
+                        "id_order": 3,
+                        "id_menu": 1,
+                        "qty_item": 1,
+                        "total": 16000,
+                        "note": "",
+                        "createdAt": "2017-07-15T13:37:39.458Z",
+                        "updatedAt": "2017-07-15T13:37:39.458Z"
+                    },
+                    "Category": {
+                        "id": 1,
+                        "name": "Food",
+                        "createdAt": "2017-07-15T08:45:29.117Z",
+                        "updatedAt": "2017-07-15T08:45:29.117Z"
+                    }
+                }
+            ]
+        }
+    }
+]
+```
