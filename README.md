@@ -19,11 +19,11 @@ POST
 ##### Request Example
 
 > {
->
+
 >	"username":"username-log",
->
+
 >	"password":"password-log"
->
+
 > }
 
 ##### Response
