@@ -3,7 +3,7 @@ module.exports = {
     "username": "restman",
     "password": "restman12345",
     "database": "restman",
-    "host": "restman.cvr4qojho2lg.ap-southeast-1.rds.amazonaws.com",
+    "host": "http://restman.cvr4qojho2lg.ap-southeast-1.rds.amazonaws.com:5432",
     "dialect": "postgres"
   },
   "test": {
@@ -17,7 +17,7 @@ module.exports = {
     "username": "restman",
     "password": "restman12345",
     "database": "restman",
-    "host": "restman.cvr4qojho2lg.ap-southeast-1.rds.amazonaws.com",
+    "host": "http://restman.cvr4qojho2lg.ap-southeast-1.rds.amazonaws.com:5432",
     "dialect": "postgres"
   }
 }
