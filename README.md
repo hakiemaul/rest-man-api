@@ -23,15 +23,14 @@ POST
 >	"password":"password-log"
 > }
 
-
 ##### Response
 
 > {
 >    "id": 1,
 >    "username": "admin",
 >    "role": "Admin",
->    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwidXNlcm5hbWUiOiJhZG1pbiIsInJvbGUiOiJBZG1pbiIsImlhdCI6MTUwMDExMDA5MH0.r98Vmol65hRqJ_mjpUZ2usKa26d8TzEwffPjB4r4m98",
+>    "token": "asflljsafkafslakfj",
 >    "success": true,
 >    "message": "Login Success"
->}
+> }
 
