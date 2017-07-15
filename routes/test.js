@@ -22,18 +22,6 @@ router.get('/database', function(req, res, next) {
   })
 });
 
-/**
- * @api {get} /ping Ping server
- * @apiGroup Status
- * @apiSuccess {String} status Status Server
- * @apiSuccessExample {json} Success
- *    HTTP/1.1 200 OK
- *    [{
- *      "status": "up",
- *    }]
- * @apiErrorExample {json} List error
- *    HTTP/1.1 500 Internal Server Error
- */
 router.get('/', function(req, res, next){
   res.status(200)
   res.json({
