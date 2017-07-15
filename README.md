@@ -19,18 +19,28 @@ POST
 ##### Request Example
 
 > {
+>
 >	"username":"username-log",
+>
 >	"password":"password-log"
+>
 > }
 
 ##### Response
 
 > {
+>
 >    "id": 1,
+>
 >    "username": "admin",
+>
 >    "role": "Admin",
+>
 >    "token": "asflljsafkafslakfj",
+>
 >    "success": true,
+>
 >    "message": "Login Success"
+>
 > }
 
