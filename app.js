@@ -10,6 +10,7 @@ const categories = require('./routes/category');
 const menu = require('./routes/menu');
 const orders = require('./routes/order');
 const transactions = require('./routes/transaction');
+const test = require('./routes/test');
 
 const app = express();
 
@@ -25,8 +26,10 @@ app.use('/category', categories);
 app.use('/menu', menu);
 app.use('/order', orders);
 app.use('/transaction', transactions);
-
+app.use('/test', test);
 
 app.listen(app.get('port'),()=>{
-	console.log("Express Run to http://localhost/:"+app.get('port'));
+	console.log("Express Run to http://localhost:"+app.get('port'));
 })
+
+module.exports = app

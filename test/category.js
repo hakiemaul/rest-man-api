@@ -8,17 +8,24 @@ chai.use(chaiHttp);
 
 describe('Category Test',()=>{
   beforeEach((done) => {
-    // runs before each test in this block
     models.Category.create({
 				name: 'Category'
-    },(err, res)=>{
+    })
+    .then(response=>{
     	done()
+    })
+    .catch(err=>{
+    	done(err)
     })
   });
 
   afterEach((done) => {
-		models.Category.destroy({},(err, res)=>{
+		models.Category.destroy({})
+		.then(response=>{
 			done()
+		})
+		.catch(err=>{
+			done(err)
 		})
   });
 
@@ -28,10 +35,10 @@ describe('Category Test',()=>{
 			.get('/category')
 			.end((err, res) => {
 	    	if(err){
-	    		res.status.have(500);
+	    		res.should.have.status(500);
 	    		done(err);
 	    	}else{
-	    		res.status.have(200);
+	    		res.should.have.status(200);
 	    		res.length.should.equal(1);
 	    		done();
 	    	}
@@ -48,10 +55,10 @@ describe('Category Test',()=>{
   		})
   		.end((err, res)=>{
   			if(err){
-  				res.status.have(500);
+  				res.should.have.status(500);
   				done(err);
   			}else{
-  				res.status.have(200);
+  				res.should.have.status(200);
   				res.body.should.have.property('id');
   				res.body.should.have.property('name');
   				done();
@@ -67,10 +74,10 @@ describe('Category Test',()=>{
   		})
   		.end((err, res)=>{
   			if(err){
-  				res.status.have(500);
+  				res.should.have.status(500);
   				done(err);
   			}else{
-  				res.status.have(200);
+  				res.should.have.status(200);
   				res.body.success.should.be.equal(false)
   				done();
   			}
@@ -87,15 +94,15 @@ describe('Category Test',()=>{
 				chai.request(server)
 				.put('/category/'+query.id)
 				.send({
-					name: 'Category di update'
+					name: 'Category di update',
 					updatedAt: new Date()
 				})
 				.end((err,res)=>{
 					if(err){
-						res.status.have(500);
+						res.should.have.status(500);
 						done(err);
 					}else{
-						res.status.have(200);
+						res.should.have.status(200);
 						res.body.success.should.be.equal(true);
 						done();
 					}
@@ -111,15 +118,15 @@ describe('Category Test',()=>{
 				chai.request(server)
 				.put('/category/'+query.id)
 				.send({
-					name: null
+					name: null,
 					updatedAt: new Date()
 				})
 				.end((err,res)=>{
 					if(err){
-						res.status.have(500);
+						res.should.have.status(500);
 						done(err);
 					}else{
-						res.status.have(200);
+						res.should.have.status(200);
 						res.body.success.should.be.equal(true);
 						done();
 					}
@@ -138,10 +145,10 @@ describe('Category Test',()=>{
 				.delete('/category/'+query.id)
 				.end((err,res)=>{
 					if(err){
-						res.status.have(500);
+						res.should.have.status(500);
 						done(err);
 					}else{
-						res.status.have(200);
+						res.should.have.status(200);
 						res.body.success.should.be.equal(true);
 						done();
 					}

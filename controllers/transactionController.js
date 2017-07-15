@@ -4,8 +4,26 @@ module.exports = {
 	getAllTransactions : (req, res)=>{
 		models.Transaction.findAll({
 			include:[
-				{model: models.Order}
-			]
+				{
+					model: models.Order,
+					include:[
+			  		{
+					    model: models.Employee
+					  },
+					  {
+					    model: models.Menu,
+					    include:[
+					    	{
+					    		model: models.Category
+					    	}
+					    ]
+					  }
+					]
+				}
+			],
+			order: [
+	    	['createdAt', 'DESC']
+	    ]
 		})
 		.then(response=>{
 			res.json(response)

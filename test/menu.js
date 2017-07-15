@@ -8,21 +8,28 @@ chai.use(chaiHttp);
 
 describe('Menu Test', ()=>{
 
-  beforeEach((done) => {
-    // runs before each test in this block
+  before((done) => {
     models.Menu.create({
 			name: 'Test Menu',
 			description: 'Test Menu',
 			price: 20000
-    },(err, res)=>{
+    })
+    .then(response=>{
     	done()
+    })
+    .catch(err=>{
+    	done(err)
     })
   });
 
-  afterEach((done) => {
-		models.Menu.destroy({},(err, res)=>{
-			done()
-		})
+  after((done) => {
+		models.Menu.destroy({})
+    .then(response=>{
+    	done()
+    })
+    .catch(err=>{
+    	done(err)
+    })
   });
 
 	describe('Read - Read data Menu',()=>{
@@ -30,10 +37,10 @@ describe('Menu Test', ()=>{
 	    models.Menu.findAll()
 	    .then((err, res) => {
 	    	if(err){
-	    		res.status.have(500);
+	    		res.should.have.status(500);
 	    		done(err);
 	    	}else{
-	    		res.status.have(200);
+	    		res.should.have.status(200);
 	    		res.length.should.equal(1);
 	    		done();
 	    	}
@@ -45,10 +52,10 @@ describe('Menu Test', ()=>{
 			.get('/menu')
 			.end((err, res) => {
 	    	if(err){
-	    		res.status.have(500);
+	    		res.should.have.status(500);
 	    		done(err);
 	    	}else{
-	    		res.status.have(200);
+	    		res.should.have.status(200);
 	    		res.length.should.equal(1);
 	    		done();
 	    	}
@@ -67,10 +74,10 @@ describe('Menu Test', ()=>{
 			})
 			.end((err, result)=>{
 				if(err){
-					res.status.have(500);
+					res.should.have.status(500);
 					done(err);
 				}else{
-					res.status.have(200);
+					res.should.have.status(200);
 					res.body.should.have.property('id');
 					res.body.should.have.property('name');
 					res.body.should.have.property('description');
@@ -90,10 +97,10 @@ describe('Menu Test', ()=>{
 			})
 			.end((err, res)=>{
 				if(err){
-					res.status.have(500);
+					res.should.have.status(500);
 					done(err);
 				}else{
-					res.status.have(200);
+					res.should.have.status(200);
 					res.body.success.sould.be.equal(true);
 					done();
 				}
@@ -110,10 +117,10 @@ describe('Menu Test', ()=>{
 			})
 			.end((err, res)=>{
 				if(err){
-					res.status.have(500);
+					res.should.have.status(500);
 					done(err);
 				}else{
-					res.status.have(200);
+					res.should.have.status(200);
 					res.body.success.sould.be.equal(false);
 					done();
 				}
@@ -130,10 +137,10 @@ describe('Menu Test', ()=>{
 			})
 			.end((err, res)=>{
 				if(err){
-					res.status.have(500);
+					res.should.have.status(500);
 					done(err);
 				}else{
-					res.status.have(200);
+					res.should.have.status(200);
 					res.body.success.sould.be.equal(false);
 					done();
 				}
@@ -148,7 +155,7 @@ describe('Menu Test', ()=>{
 				description: 'Menu update Description',
 				price: 15000
 			})
-			.then((err, query)=>{
+			.then((query)=>{
 				chai.request(server)
 				.put('/menu/'+query.id)
 				.send({
@@ -159,15 +166,18 @@ describe('Menu Test', ()=>{
 				})
 				.end((err,res)=>{
 					if(err){
-						res.status.have(500);
+						res.should.have.status(500);
 						done(err);
 					}else{
-						res.status.have(200);
+						res.should.have.status(200);
 						res.body.success.should.be.equal(true);
 						done();
 					}
 				});
-			});
+			})
+			.catch(err=>{
+				done(err)
+			})
 		});
 
 		it('Should be return success false when trying to update data Menu if field name is empty', (done)=>{
@@ -187,10 +197,10 @@ describe('Menu Test', ()=>{
 				})
 				.end((err,res)=>{
 					if(err){
-						res.status.have(500);
+						res.should.have.status(500);
 						done(err);
 					}else{
-						res.status.have(200);
+						res.should.have.status(200);
 						res.body.success.should.be.equal(false);
 						done();
 					}
@@ -211,10 +221,10 @@ describe('Menu Test', ()=>{
 				.delete('/menu/'+query.id)
 				.end((err,res)=>{
 					if(err){
-						res.status.have(500);
+						res.should.have.status(500);
 						done(err);
 					}else{
-						res.status.have(200);
+						res.should.have.status(200);
 						res.body.success.should.be.equal(true);
 						done();
 					}

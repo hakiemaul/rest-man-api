@@ -9,20 +9,27 @@ chai.use(chaiHttp);
 describe('Transaction Test', ()=>{
 
   beforeEach((done) => {
-    // runs before each test in this block
     models.Transaction.create({
 			id_order: 1,
 			pay: 20000,
 			refund: 0
-    },(err, res)=>{
+    })
+    .then(response=>{
     	done()
+    })
+    .catch(err=>{
+    	done(err)
     })
   });
 
   afterEach((done) => {
-		models.Transaction.destroy({},(err, res)=>{
-			done()
-		})
+		models.Transaction.destroy({})
+    .then(response=>{
+    	done()
+    })
+    .catch(err=>{
+    	done(err)
+    })
   });
 
 	describe('Read - Read data Transaction',()=>{
@@ -30,10 +37,10 @@ describe('Transaction Test', ()=>{
 	    models.Transaction.findAll()
 	    .then((err, res) => {
 	    	if(err){
-	    		res.status.have(500);
+	    		res.should.have.status(500);
 	    		done(err);
 	    	}else{
-	    		res.status.have(200);
+	    		res.should.have.status(200);
 	    		res.length.should.equal(1);
 	    		done();
 	    	}
@@ -45,10 +52,10 @@ describe('Transaction Test', ()=>{
 			.get('/transaction')
 			.end((err, res) => {
 	    	if(err){
-	    		res.status.have(500);
+	    		res.should.have.status(500);
 	    		done(err);
 	    	}else{
-	    		res.status.have(200);
+	    		res.should.have.status(200);
 	    		res.length.should.equal(1);
 	    		done();
 	    	}
@@ -67,10 +74,10 @@ describe('Transaction Test', ()=>{
 			})
 			.end((err, result)=>{
 				if(err){
-					res.status.have(500);
+					res.should.have.status(500);
 					done(err);
 				}else{
-					res.status.have(200);
+					res.should.have.status(200);
 					res.body.should.have.property('id');
 					res.body.should.have.property('id_order');
 					res.body.should.have.property('pay');
@@ -90,10 +97,10 @@ describe('Transaction Test', ()=>{
 			})
 			.end((err, res)=>{
 				if(err){
-					res.status.have(500);
+					res.should.have.status(500);
 					done(err);
 				}else{
-					res.status.have(200);
+					res.should.have.status(200);
 					res.body.success.sould.be.equal(true);
 					done();
 				}
@@ -110,10 +117,10 @@ describe('Transaction Test', ()=>{
 			})
 			.end((err, res)=>{
 				if(err){
-					res.status.have(500);
+					res.should.have.status(500);
 					done(err);
 				}else{
-					res.status.have(200);
+					res.should.have.status(200);
 					res.body.success.sould.be.equal(false);
 					done();
 				}

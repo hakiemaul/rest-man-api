@@ -59,7 +59,8 @@ module.exports={
 			}
 		}) 
 		.catch(err=>{
-			res.send(err)
+			res.status(500)
+			res.json(err)
 		})
 	}
 }

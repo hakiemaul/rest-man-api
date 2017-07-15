@@ -8,10 +8,15 @@ module.exports = {
 			    model: models.Employee
 			  },
 			  {
-			    model: models.Menu
+			    model: models.Menu,
+			    include:[
+			    	{
+			    		model: models.Category
+			    	}
+			    ]
 			  }
 			],
-			order: [
+			order: [	
 	    	['createdAt', 'DESC']
 	    ]
 		})
