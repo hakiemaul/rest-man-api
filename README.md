@@ -41,6 +41,42 @@ https://localhost:3000/auth/login
 ```
 
 ------------
+## Role
+
+### Role - Get the Role
+
+```sh
+GET
+
+https://localhost:3000/role
+```
+
+##### Response
+
+```
+[
+    {
+        "id": 1,
+        "type": "Admin",
+        "createdAt": "2017-05-04T19:43:48.271Z",
+        "updatedAt": "2017-05-04T19:43:48.271Z"
+    },
+    {
+        "id": 2,
+        "type": "Waiters",
+        "createdAt": "2017-05-04T19:43:48.271Z",
+        "updatedAt": "2017-05-04T19:43:48.271Z"
+    },
+    {
+        "id": 3,
+        "type": "Cashier",
+        "createdAt": "2017-05-04T19:43:48.271Z",
+        "updatedAt": "2017-05-04T19:43:48.271Z"
+    }
+]
+```
+
+-------------
 
 ## Employee
 
