@@ -1,5 +1,6 @@
 const chai = require('chai');
 const chaiHttp = require('chai-http');
+const bcrypt = require('bcrypt');
 require('dotenv').config();
 
 const server = require('../app');
@@ -9,46 +10,51 @@ chai.use(chaiHttp);
 describe('Employee Test', ()=>{
 
   beforeEach((done) => {
-    // runs before each test in this block
     models.Employee.create({
 				username: 'employee',
-				password: 'employee',
+				password: bcrypt.hashSync('employee', bcrypt.genSaltSync(10)),
 				id_role: 2
-    },(err, res)=>{
+    })
+    .then(response=>{
     	done()
+    })
+    .catch(err=>{
+    	done(err)
     })
   });
 
   afterEach((done) => {
-		models.Employee.destroy({},(err, res)=>{
+		models.Employee.destroy({})
+		.then(response=>{
 			done()
+		})
+		.catch(err=>{
+			done(err)
 		})
   });
 
 	describe('Read - Read data employee',()=>{
-		it('Should be return length employee 1 from databases',(done)=>{
-	    models.Employee.findAll()
-	    .then((err, res) => {
-	    	if(err){
-	    		res.status.have(500);
-	    		done(err);
-	    	}else{
-	    		res.status.have(200);
-	    		res.length.should.equal(1);
-	    		done();
-	    	}
-	    });
-		});
+		// it('Should be return length employee 1 from databases',(done)=>{
+	 //    models.Employee.findAll({})
+	 //    .then(res=>{
+	 //    	res.length.should.equal(1);
+	 //    	done()
+	 //    })
+	 //    .catch(err=>{
+	 //    	done(err)
+	 //    })
+
+		// });
 
 		it('Should be return length employee 1 from url /employee',(done)=>{
 			chai.request(server)
 			.get('/employee')
 			.end((err, res) => {
 	    	if(err){
-	    		res.status.have(500);
+	    		res.should.have.status(500);
 	    		done(err);
 	    	}else{
-	    		res.status.have(200);
+	    		res.should.have.status(200);
 	    		res.length.should.equal(1);
 	    		done();
 	    	}
@@ -59,7 +65,7 @@ describe('Employee Test', ()=>{
 	describe('Create - Register data employee', ()=>{
 		it('Should be return all field / property when trying to Register data employee', (done)=>{
 			chai.request(server)
-			.post('/employee/add')
+			.post('/employee')
 			.send({
 				username: 'employee1',
 				password: 'employee1',
@@ -67,10 +73,10 @@ describe('Employee Test', ()=>{
 			})
 			.end((err, result)=>{
 				if(err){
-					res.status.have(500);
+					res.should.have.status(500);
 					done(err);
 				}else{
-					res.status.have(200);
+					res.should.have.status(200);
 					res.body.should.have.property('id');
 					res.body.should.have.property('username');
 					res.body.should.have.property('password');
@@ -82,7 +88,7 @@ describe('Employee Test', ()=>{
 
 		it('Should be return success true when trying Register data employee', (done)=>{
 			chai.request(server)
-			.post('/employee/add')
+			.post('/employee')
 			.send({
 				username: 'employee2',
 				password: 'employee2',
@@ -90,10 +96,10 @@ describe('Employee Test', ()=>{
 			})
 			.end((err, res)=>{
 				if(err){
-					res.status.have(500);
+					res.should.have.status(500);
 					done(err);
 				}else{
-					res.status.have(200);
+					res.should.have.status(200);
 					res.body.success.sould.be.equal(true);
 					done();
 				}
@@ -102,7 +108,7 @@ describe('Employee Test', ()=>{
 
 		it('Should be return {message: "Username or Password Required"} when trying Register with field username or password is empty', (done)=>{
 			chai.request(server)
-			.post('/employee/add')
+			.post('/employee')
 			.send({
 				username: 'employee3',
 				password: '',
@@ -110,10 +116,10 @@ describe('Employee Test', ()=>{
 			})
 			.end((err, res)=>{
 				if(err){
-					res.status.have(500);
+					res.should.have.status(500);
 					done(err);
 				}else{
-					res.status.have(200);
+					res.should.have.status(200);
 					res.body.message.sould.be.equal('Username or Password Required');
 					done();
 				}
@@ -122,7 +128,7 @@ describe('Employee Test', ()=>{
 
 		it('Should be return success false when trying Register with field username or password is empty', (done)=>{
 			chai.request(server)
-			.post('/employee/add')
+			.post('/employee')
 			.send({
 				username: 'employee3',
 				password: '',
@@ -130,10 +136,10 @@ describe('Employee Test', ()=>{
 			})
 			.end((err, res)=>{
 				if(err){
-					res.status.have(500);
+					res.should.have.status(500);
 					done(err);
 				}else{
-					res.status.have(200);
+					res.should.have.status(200);
 					res.body.success.sould.be.equal(false);
 					done();
 				}
@@ -141,7 +147,7 @@ describe('Employee Test', ()=>{
 		});
 		it('Should be return success false when trying Register if field id_role is empty', (done)=>{
 			chai.request(server)
-			.post('/employee/add')
+			.post('/employee')
 			.send({
 				username: 'employee3',
 				password: '',
@@ -149,10 +155,10 @@ describe('Employee Test', ()=>{
 			})
 			.end((err, res)=>{
 				if(err){
-					res.status.have(500);
+					res.should.have.status(500);
 					done(err);
 				}else{
-					res.status.have(200);
+					res.should.have.status(200);
 					res.body.success.sould.be.equal(false);
 					done();
 				}
@@ -172,16 +178,16 @@ describe('Employee Test', ()=>{
 				.put('/employee/'+query.id)
 				.send({
 					username: 'Waiter3',
-					password: 'waiter3'
+					password: 'waiter3',
 					id_role: 2,
 					updatedAt: new Date()
 				})
 				.end((err,res)=>{
 					if(err){
-						res.status.have(500);
+						res.should.have.status(500);
 						done(err);
 					}else{
-						res.status.have(200);
+						res.should.have.status(200);
 						res.body.success.should.be.equal(true);
 						done();
 					}
@@ -200,16 +206,16 @@ describe('Employee Test', ()=>{
 				.put('/employee/'+query.id)
 				.send({
 					username: 'Waiter4',
-					password: ''
+					password: '',
 					id_role: 2,
 					updatedAt: new Date()
 				})
 				.end((err,res)=>{
 					if(err){
-						res.status.have(500);
+						res.should.have.status(500);
 						done(err);
 					}else{
-						res.status.have(200);
+						res.should.have.status(200);
 						res.body.success.should.be.equal(false);
 						done();
 					}
@@ -230,10 +236,10 @@ describe('Employee Test', ()=>{
 				.delete('/employee/'+query.id)
 				.end((err,res)=>{
 					if(err){
-						res.status.have(500);
+						res.should.have.status(500);
 						done(err);
 					}else{
-						res.status.have(200);
+						res.should.have.status(200);
 						res.body.success.should.be.equal(true);
 						done();
 					}

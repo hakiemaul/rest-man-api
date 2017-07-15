@@ -9,21 +9,28 @@ chai.use(chaiHttp);
 describe('Order Test', ()=>{
 
   beforeEach((done) => {
-    // runs before each test in this block
     models.Order.create({
-    	total_price: 50000
+    	total_price: 50000,
 			no_meja: 'B1',
 			id_employee: 2,
 			status: true
-    },(err, res)=>{
+    })
+    .then(response=>{
     	done()
+    })
+    .catch(err=>{
+    	done(err)
     })
   });
 
   afterEach((done) => {
-		models.Order.destroy({},(err, res)=>{
-			done()
-		})
+		models.Order.destroy({})
+    .then(response=>{
+    	done()
+    })
+    .catch(err=>{
+    	done(err)
+    })
   });
 
 	describe('Read - Read data Order',()=>{
@@ -31,10 +38,10 @@ describe('Order Test', ()=>{
 	    models.Order.findAll()
 	    .then((err, res) => {
 	    	if(err){
-	    		res.status.have(500);
+	    		res.should.have.status(500);
 	    		done(err);
 	    	}else{
-	    		res.status.have(200);
+	    		res.should.have.status(200);
 	    		res.length.should.equal(1);
 	    		done();
 	    	}
@@ -46,10 +53,10 @@ describe('Order Test', ()=>{
 			.get('/order')
 			.end((err, res) => {
 	    	if(err){
-	    		res.status.have(500);
+	    		res.should.have.status(500);
 	    		done(err);
 	    	}else{
-	    		res.status.have(200);
+	    		res.should.have.status(200);
 	    		res.length.should.equal(1);
 	    		done();
 	    	}
@@ -62,17 +69,17 @@ describe('Order Test', ()=>{
 			chai.request(server)
 			.post('/order/add')
 			.send({
-	    	total_price: 50000
+	    	total_price: 50000,
 				no_meja: 'B1',
 				id_employee: 2,
 				status: true
 			})
 			.end((err, result)=>{
 				if(err){
-					res.status.have(500);
+					res.should.have.status(500);
 					done(err);
 				}else{
-					res.status.have(200);
+					res.should.have.status(200);
 					res.body.should.have.property('id');
 					res.body.should.have.property('total_price');
 					res.body.should.have.property('no_meja');
@@ -86,17 +93,17 @@ describe('Order Test', ()=>{
 			chai.request(server)
 			.post('/order/add')
 			.send({
-	    	total_price: 50000
+	    	total_price: 50000,
 				no_meja: 'B1',
 				id_employee: 2,
 				status: true
 			})
 			.end((err, res)=>{
 				if(err){
-					res.status.have(500);
+					res.should.have.status(500);
 					done(err);
 				}else{
-					res.status.have(200);
+					res.should.have.status(200);
 					res.body.success.sould.be.equal(true);
 					done();
 				}
@@ -107,17 +114,17 @@ describe('Order Test', ()=>{
 			chai.request(server)
 			.post('/order/add')
 			.send({
-	    	total_price: 50000
+	    	total_price: 50000,
 				no_meja: null,
-				id_employee: 2
+				id_employee: 2,
 				status: true
 			})
 			.end((err, res)=>{
 				if(err){
-					res.status.have(500);
+					res.should.have.status(500);
 					done(err);
 				}else{
-					res.status.have(200);
+					res.should.have.status(200);
 					res.body.success.sould.be.equal(false);
 					done();
 				}
@@ -128,7 +135,7 @@ describe('Order Test', ()=>{
 	describe('Update - Update data Order',()=>{
 		it('Should be return success true when trying to update data Order', (done)=>{
 			models.Order.create({
-	    	total_price: 50000
+	    	total_price: 50000,
 				no_meja: 'A1',
 				id_employee: 2,
 				status: true
@@ -137,17 +144,17 @@ describe('Order Test', ()=>{
 				chai.request(server)
 				.put('/order/'+query.id)
 				.send({
-		    	total_price: 50000
+		    	total_price: 50000,
 					no_meja: 'B1',
 					id_employee: 2,
 					status: true
 				})
 				.end((err,res)=>{
 					if(err){
-						res.status.have(500);
+						res.should.have.status(500);
 						done(err);
 					}else{
-						res.status.have(200);
+						res.should.have.status(200);
 						res.body.success.should.be.equal(true);
 						done();
 					}
@@ -157,16 +164,16 @@ describe('Order Test', ()=>{
 
 		it('Should be return success false when trying to update data Order if field no_meja is empty', (done)=>{
 			models.Order.create({
-	    	total_price: 50000
+	    	total_price: 50000,
 				no_meja: 'B1',
-				id_employee: 2
+				id_employee: 2,
 				status: true
 			})
 			.then((err, query)=>{
 				chai.request(server)
 				.put('/order/'+query.id)
 				.send({
-		    	total_price: 50000
+		    	total_price: 50000,
 					no_meja: null,
 					id_employee: 2,
 					status: true,
@@ -174,10 +181,10 @@ describe('Order Test', ()=>{
 				})
 				.end((err,res)=>{
 					if(err){
-						res.status.have(500);
+						res.should.have.status(500);
 						done(err);
 					}else{
-						res.status.have(200);
+						res.should.have.status(200);
 						res.body.success.should.be.equal(false);
 						done();
 					}
@@ -189,7 +196,7 @@ describe('Order Test', ()=>{
 	describe('Delete - Delete data Order', ()=>{
 		it('Should be return success true when trying to delete Order',(done)=>{
 			models.Order.create({
-	    	total_price: 50000
+	    	total_price: 50000,
 				no_meja: 'B1',
 				id_employee: 2,
 				status: true
@@ -199,10 +206,10 @@ describe('Order Test', ()=>{
 				.delete('/order/'+query.id)
 				.end((err,res)=>{
 					if(err){
-						res.status.have(500);
+						res.should.have.status(500);
 						done(err);
 					}else{
-						res.status.have(200);
+						res.should.have.status(200);
 						res.body.success.should.be.equal(true);
 						done();
 					}

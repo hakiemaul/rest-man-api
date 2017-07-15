@@ -4,8 +4,8 @@ require('dotenv').config();
 
 const server = require('../app');
 
-const should = chai.should();
 chai.use(chaiHttp); 
+const should = chai.should();
 
 describe('Server test', ()=>{
 	describe('Express - Server active when httpServer Running', ()=>{

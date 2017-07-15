@@ -9,21 +9,28 @@ chai.use(chaiHttp);
 describe('Menu Order Test', ()=>{
 
   beforeEach((done) => {
-    // runs before each test in this block
     models.MenuOrder.create({
 			id_order: 1,
 			id_menu: 1,
 			qty_item: 1,
 			total: 20000
-    },(err, res)=>{
+    })
+    .then(response=>{
     	done()
+    })
+    .catch(err=>{
+    	done(err)
     })
   });
 
   afterEach((done) => {
-		models.MenuOrder.destroy({},(err, res)=>{
-			done()
-		})
+		models.MenuOrder.destroy()
+    .then(response=>{
+    	done()
+    })
+    .catch(err=>{
+    	done(err)
+    })
   });
 
 	describe('Read - Read data Menu Order',()=>{
@@ -31,10 +38,10 @@ describe('Menu Order Test', ()=>{
 	    models.MenuOrder.findAll()
 	    .then((err, res) => {
 	    	if(err){
-	    		res.status.have(500);
+	    		res.should.have.status(500);
 	    		done(err);
 	    	}else{
-	    		res.status.have(200);
+	    		res.should.have.status(200);
 	    		res.length.should.equal(1);
 	    		done();
 	    	}
@@ -46,10 +53,10 @@ describe('Menu Order Test', ()=>{
 			.get('/menu-order')
 			.end((err, res) => {
 	    	if(err){
-	    		res.status.have(500);
+	    		res.should.have.status(500);
 	    		done(err);
 	    	}else{
-	    		res.status.have(200);
+	    		res.should.have.status(200);
 	    		res.length.should.equal(1);
 	    		done();
 	    	}
@@ -69,10 +76,10 @@ describe('Menu Order Test', ()=>{
 			})
 			.end((err, result)=>{
 				if(err){
-					res.status.have(500);
+					res.should.have.status(500);
 					done(err);
 				}else{
-					res.status.have(200);
+					res.should.have.status(200);
 					res.body.should.have.property('id');
 					res.body.should.have.property('id_order');
 					res.body.should.have.property('id_menu');
@@ -94,10 +101,10 @@ describe('Menu Order Test', ()=>{
 			})
 			.end((err, res)=>{
 				if(err){
-					res.status.have(500);
+					res.should.have.status(500);
 					done(err);
 				}else{
-					res.status.have(200);
+					res.should.have.status(200);
 					res.body.success.sould.be.equal(true);
 					done();
 				}
@@ -115,10 +122,10 @@ describe('Menu Order Test', ()=>{
 			})
 			.end((err, res)=>{
 				if(err){
-					res.status.have(500);
+					res.should.have.status(500);
 					done(err);
 				}else{
-					res.status.have(200);
+					res.should.have.status(200);
 					res.body.success.sould.be.equal(false);
 					done();
 				}
@@ -146,10 +153,10 @@ describe('Menu Order Test', ()=>{
 				})
 				.end((err,res)=>{
 					if(err){
-						res.status.have(500);
+						res.should.have.status(500);
 						done(err);
 					}else{
-						res.status.have(200);
+						res.should.have.status(200);
 						res.body.success.should.be.equal(true);
 						done();
 					}
@@ -176,10 +183,10 @@ describe('Menu Order Test', ()=>{
 				})
 				.end((err,res)=>{
 					if(err){
-						res.status.have(500);
+						res.should.have.status(500);
 						done(err);
 					}else{
-						res.status.have(200);
+						res.should.have.status(200);
 						res.body.success.should.be.equal(false);
 						done();
 					}
@@ -201,10 +208,10 @@ describe('Menu Order Test', ()=>{
 				.delete('/menu-order/'+query.id)
 				.end((err,res)=>{
 					if(err){
-						res.status.have(500);
+						res.should.have.status(500);
 						done(err);
 					}else{
-						res.status.have(200);
+						res.should.have.status(200);
 						res.body.success.should.be.equal(true);
 						done();
 					}
