@@ -6,7 +6,9 @@
   "repository": "https://github.com/hakiemaul/rest-man-api.git",
   "license": "MIT",
   "scripts": {
-    "test": "NODE_ENV=test mocha"
+    "start": "nodemon app.js",
+    "prestart": "./node_modules/.bin/sequelize db:migrate && ./node_modules/.bin/sequelize db:seed:all",
+    "test": "mocha --timeout 20000"
   },
   "dependencies": {
     "bcrypt": "^1.0.2",
