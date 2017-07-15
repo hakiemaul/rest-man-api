@@ -1,9 +1,9 @@
 module.exports = {
   "development": {
-    "username": "postgres",
-    "password": 12345,
-    "database": "db_RESTMan_dev",
-    "host": "localhost",
+    "username": "restman",
+    "password": "restman12345",
+    "database": "restman",
+    "host": "restman.cvr4qojho2lg.ap-southeast-1.rds.amazonaws.com",
     "dialect": "postgres"
   },
   "test": {
@@ -14,10 +14,10 @@ module.exports = {
     "dialect": "postgres"
   },
   "production": {
-    "username": "root",
-    "password": null,
-    "database": "db_RESTMan_production",
-    "host": "127.0.0.1",
+    "username": "restman",
+    "password": "restman12345",
+    "database": "restman",
+    "host": "restman.cvr4qojho2lg.ap-southeast-1.rds.amazonaws.com",
     "dialect": "postgres"
   }
 }
