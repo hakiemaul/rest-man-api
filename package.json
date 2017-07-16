@@ -7,7 +7,7 @@
   "license": "MIT",
   "scripts": {
     "start": "nodemon app.js",
-    "test": "mocha --timeout 20000"
+    "test": "mocha"
   },
   "dependencies": {
     "bcrypt": "^1.0.2",

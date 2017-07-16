@@ -21,6 +21,7 @@ module.exports = {
       name: null,
       description: null,
       price:null,
+      urlImg:null,
       category:null,
       success: false,
       message: ''
@@ -30,6 +31,7 @@ module.exports = {
       name: req.body.name,
       description: req.body.description,
       price:req.body.price,
+      urlImg:req.body.urlImg,
       id_category:req.body.id_category
 		})
 		.then(response=>{
@@ -47,6 +49,7 @@ module.exports = {
 				finalResult.name = response.dataValues.name;
 				finalResult.description = response.dataValues.description;
 				finalResult.price = response.dataValues.price;
+				finalResult.urlImg = response.dataValues.urlImg;
 				finalResult.category = Category
 				finalResult.success = true
 				finalResult.message = "Menu has been added"
@@ -66,6 +69,7 @@ module.exports = {
       name: null,
       description: null,
       price:null,
+      urlImg:null,
       id_category:null,
       success: false,
       message: ''
@@ -80,6 +84,7 @@ module.exports = {
 	      name: req.body.name || query.dataValues.name,
 	      description: req.body.description || query.dataValues.description,
 	      price:req.body.price || query.dataValues.price,
+	      urlImg:req.body.urlImg || query.dataValues.urlImg,
 	      id_category:req.body.id_category || query.dataValues.id_category,
         createdAt : query.dataValues.createdAt,
         updatedAt : new Date()
@@ -89,7 +94,7 @@ module.exports = {
 				.then(responseCategory=>{
 					let Category = ''
 					responseCategory.map(CategoryValue=>{
-						if(CategoryValue.dataValues.id === id_Category){
+						if(CategoryValue.dataValues.id === response.id_category){
 							Category = CategoryValue.dataValues.type
 							return Category
 						}
@@ -98,6 +103,7 @@ module.exports = {
 					finalResult.name = response.dataValues.name;
 					finalResult.description = response.dataValues.description;
 					finalResult.price = response.dataValues.price;
+					finalResult.urlImg = response.dataValues.urlImg;
 					finalResult.Category = Category
 					finalResult.success = true
 					finalResult.message = "Menu has been updated"

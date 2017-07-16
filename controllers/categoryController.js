@@ -17,19 +17,23 @@ module.exports = {
 			success: false,
 			message: ''
 		}
-		models.Category.create({
-			name: req.body.name
-		})
-		.then(response=>{
-			finalResult.id = response.dataValues.id
-			finalResult.name = response.dataValues.name
-			finalResult.success = true
-			finalResult.message = "Category has been added"
+		if(req.body.name !== undefined){
+			models.Category.create({
+				name: req.body.name
+			})
+			.then(response=>{
+				finalResult.id = response.dataValues.id
+				finalResult.name = response.dataValues.name
+				finalResult.success = true
+				finalResult.message = "Category has been added"
+				res.json(finalResult)
+			})
+			.catch(err=>{
+				res.json(err)
+			})
+		}else{
 			res.json(finalResult)
-		})
-		.catch(err=>{
-			res.json(err)
-		})
+		}
 	},
 	editCategory: (req, res)=>{
 		let finalResult = {

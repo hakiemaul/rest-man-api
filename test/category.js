@@ -7,9 +7,9 @@ const models = require('../models');
 chai.use(chaiHttp);
 
 describe('Category Test',()=>{
-  beforeEach((done) => {
+  before((done) => {
     models.Category.create({
-				name: 'Category'
+			name: 'Category'
     })
     .then(response=>{
     	done()
@@ -19,7 +19,7 @@ describe('Category Test',()=>{
     })
   });
 
-  afterEach((done) => {
+  after((done) => {
 		models.Category.destroy({})
 		.then(response=>{
 			done()
@@ -49,7 +49,7 @@ describe('Category Test',()=>{
   describe('Create - Add category',()=>{
   	it('Should be return all field category when trying to add category',(done)=>{
   		chai.request(server)
-  		.post('/category/add')
+  		.post('/category')
   		.send({
   			name: 'Category 2'
   		})
@@ -68,7 +68,7 @@ describe('Category Test',()=>{
 
   	it('Should be return success false while trying to add category with field name is empty',(done)=>{
   		chai.request(server)
-  		.post('/category/add')
+  		.post('/category')
   		.send({
   			name: null
   		})
@@ -90,7 +90,7 @@ describe('Category Test',()=>{
 			models.Category.create({
 				name: 'Category Update'
 			})
-			.then((err, query)=>{
+			.then((query)=>{
 				chai.request(server)
 				.put('/category/'+query.id)
 				.send({
@@ -114,11 +114,11 @@ describe('Category Test',()=>{
 			models.Employee.create({
 				name: 'Category Update'
 			})
-			.then((err, query)=>{
+			.then((query)=>{
 				chai.request(server)
 				.put('/category/'+query.id)
 				.send({
-					name: null,
+					name: '',
 					updatedAt: new Date()
 				})
 				.end((err,res)=>{
@@ -140,7 +140,7 @@ describe('Category Test',()=>{
 			models.Employee.create({
 				name: 'Category Delete'
 			})
-			.then((err, query)=>{
+			.then((query)=>{
 				chai.request(server)
 				.delete('/category/'+query.id)
 				.end((err,res)=>{
