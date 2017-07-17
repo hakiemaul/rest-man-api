@@ -7,7 +7,8 @@
   "license": "MIT",
   "scripts": {
     "start": "nodemon app.js",
-    "test": "mocha"
+    "dev" : "./node_modules/.bin/sequelize db:seed --seed 20170717062133-DeleteAllTable.js &&./node_modules/.bin/sequelize db:migrate && ./node_modules/.bin/sequelize db:seed --seed 20170713061659-DummyRole.js && ./node_modules/.bin/sequelize db:seed --seed 20170713094930-DummyEmployee.js",
+    "test": "./node_modules/.bin/sequelize db:seed --seed 20170717062133-DeleteAllTable.js &&./node_modules/.bin/sequelize db:migrate && ./node_modules/.bin/sequelize db:seed --seed 20170713061659-DummyRole.js && ./node_modules/.bin/sequelize db:seed --seed 20170713094930-DummyEmployee.js && mocha"
   },
   "dependencies": {
     "bcrypt": "^1.0.2",

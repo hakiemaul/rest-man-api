@@ -27,6 +27,30 @@ module.exports = {
 			res.json(err)
 		})
 	},
+	getDetailOrder: (req, res)=>{
+		models.Order.findOne({
+			id: req.params.id,
+		  include: [
+		  	{
+			    model: models.Employee
+			  },
+			  {
+			    model: models.Menu,
+			    include:[
+			    	{
+			    		model: models.Category
+			    	}
+			    ]
+			  }
+			]
+		})
+		.then(response=>{
+			res.json(response)
+		})
+		.catch(err=>{
+			res.json(err)
+		})
+	},
 	addOrder:(req, res)=>{
 		let finalResult = {
 			id: null,
@@ -88,7 +112,7 @@ module.exports = {
 			res.json(finalResult)
 		})
 		.catch(err=>{
-			res.json(err)
+			res.json(finalResult)
 		})
 	}
 }

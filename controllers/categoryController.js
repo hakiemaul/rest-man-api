@@ -17,7 +17,7 @@ module.exports = {
 			success: false,
 			message: ''
 		}
-		if(req.body.name !== undefined){
+		if(req.body.name !== ""){
 			models.Category.create({
 				name: req.body.name
 			})
@@ -29,16 +29,17 @@ module.exports = {
 				res.json(finalResult)
 			})
 			.catch(err=>{
-				res.json(err)
+				res.json(finalResult)
 			})
 		}else{
+      finalResult.message = "Category name can't not Null"
 			res.json(finalResult)
 		}
 	},
 	editCategory: (req, res)=>{
 		let finalResult = {
 			id: null,
-			name: '',
+			name: null,
 			success: false,
 			message: ''
 		}
@@ -48,24 +49,31 @@ module.exports = {
 			}
 		})
 		.then(query=>{
-      query.updateAttributes({
-        name : req.body.name || query.dataValues.name,
-        createdAt : query.dataValues.createdAt,
-        updatedAt : new Date()
-      })
-      .then((response)=>{
-      	finalResult.id = response.dataValues.id
-      	finalResult.name = response.dataValues.name
-      	finalResult.success = true
-      	finalResult.message = "Category name is updated"
-        res.json(finalResult)
-      })
-      .catch((error)=>{
-        res.json(error)
-      })
+			if(req.body.name !== ""){
+	      query.updateAttributes({
+	        name : req.body.name || query.dataValues.name,
+	        createdAt : query.dataValues.createdAt,
+	        updatedAt : new Date()
+	      })
+	      .then((response)=>{
+	      	finalResult.id = response.dataValues.id
+	      	finalResult.name = response.dataValues.name
+	      	finalResult.success = true
+	      	finalResult.message = "Category name is updated"
+	        res.json(finalResult)
+	      })
+	      .catch((error)=>{
+	      	finalResult.message = "Category name can't not Null"
+	        res.json(finalResult)
+	      })
+	    }else{
+	      finalResult.message = "Category name can't not Null"
+	    	res.json(finalResult)
+	    }
 		})
 		.catch(err=>{
-			res.json(err)
+    	finalResult.message = "Category name can't not Null"
+			res.json(finalResult)
 		})
 	},
 	deleteCategory:(req, res)=>{

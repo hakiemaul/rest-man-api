@@ -9,13 +9,16 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       id_order: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false
       },
       id_menu: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false
       },
       qty_item: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull: false
       },
       total: {
         type: Sequelize.INTEGER

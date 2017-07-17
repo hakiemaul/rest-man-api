@@ -485,6 +485,86 @@ https://localhost:3000/order
 ]
 ```
 
+### Order - Get All the Order
+
+```sh
+GET
+
+http://localhost:3000/order/:id
+```
+
+##### Response
+
+```
+[
+  {
+    "id": 2,
+    "id_employee": 2,
+    "no_meja": "1",
+    "total_price": 32000,
+    "createdAt": "2017-07-15T08:54:20.388Z",
+    "updatedAt": "2017-07-15T08:54:20.388Z",
+    "Employee": {
+        "id": 2,
+        "username": "waiters",
+        "password": "$2a$10$aTAe0z2IvomHMCaIa.znVOp2Ebd6.5h3NsGUg7SaQqGQEEBs6Wj1C",
+        "id_role": 2,
+        "createdAt": "2017-07-15T08:43:25.774Z",
+        "updatedAt": "2017-07-15T08:43:25.774Z"
+    },
+    "Menus": [
+        {
+            "id": 1,
+            "name": "Ayam Bakar",
+            "description": "Ayam Descript Bakar",
+            "price": 16000,
+            "id_category": 1,
+            "createdAt": "2017-07-15T08:47:05.087Z",
+            "updatedAt": "2017-07-15T08:47:05.087Z",
+            "MenuOrder": {
+                "id_order": 2,
+                "id_menu": 1,
+                "qty_item": 1,
+                "total": 16000,
+                "note": "",
+                "createdAt": "2017-07-15T08:54:20.461Z",
+                "updatedAt": "2017-07-15T08:54:20.461Z"
+            },
+            "Category": {
+                "id": 1,
+                "name": "Food",
+                "createdAt": "2017-07-15T08:45:29.117Z",
+                "updatedAt": "2017-07-15T08:45:29.117Z"
+            }
+        },
+        {
+            "id": 2,
+            "name": "Ayam Goreng",
+            "description": "Ayam Descript Goreng",
+            "price": 16000,
+            "id_category": 1,
+            "createdAt": "2017-07-15T08:47:17.505Z",
+            "updatedAt": "2017-07-15T08:47:17.505Z",
+            "MenuOrder": {
+                "id_order": 2,
+                "id_menu": 2,
+                "qty_item": 1,
+                "total": 16000,
+                "note": "",
+                "createdAt": "2017-07-15T08:54:20.462Z",
+                "updatedAt": "2017-07-15T08:54:20.462Z"
+            },
+            "Category": {
+                "id": 1,
+                "name": "Food",
+                "createdAt": "2017-07-15T08:45:29.117Z",
+                "updatedAt": "2017-07-15T08:45:29.117Z"
+            }
+        }
+    ]
+  }
+]
+```
 ------------
 
 ## Transaction

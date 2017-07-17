@@ -6,17 +6,17 @@ module.exports = {
     // "host": "restman.crllgb8fv86z.ap-southeast-1.rds.amazonaws.com",
     // "dialect": "postgres"
 
-    // "username": "postgres",
-    // "password": 12345,
-    // "database": "db_RESTMan_dev",
-    // "host": "localhost",
-    // "dialect": "postgres"
-
-    "username": "restman",
-    "password": "restman12345",
-    "database": "restman",
-    "host": "restman.cvr4qojho2lg.ap-southeast-1.rds.amazonaws.com",
+    "username": "postgres",
+    "password": 12345,
+    "database": "db_RESTMan_dev",
+    "host": "localhost",
     "dialect": "postgres"
+
+    // "username": "restman",
+    // "password": "restman12345",
+    // "database": "restman",
+    // "host": "restman.cvr4qojho2lg.ap-southeast-1.rds.amazonaws.com",
+    // "dialect": "postgres"
   },
   "test": {
     "username": "postgres",

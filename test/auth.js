@@ -12,41 +12,39 @@ const should = chai.should();
 chai.use(chaiHttp);
 
 describe('Auth Test',()=>{
-	before((done) => {
+	// before((done) => {
+	// 	let dummies = [
+	// 		{
+	// 			username: 'admin',
+	// 			password: bcrypt.hashSync('admin', bcrypt.genSaltSync(10)),
+	// 			id_role: 1
+	//     },
+	//     {
+	// 			username: 'waiters',
+	// 			password: bcrypt.hashSync('waiters', bcrypt.genSaltSync(10)),
+	// 			id_role: 2
+	//     },
+	//     {
+	// 			username: 'cashier',
+	// 			password: bcrypt.hashSync('cashier', bcrypt.genSaltSync(10)),
+	// 			id_role: 3
+	//     }
+	// 	]
+	// 	dummies.map(data=>{
+	// 		models.Employee.create(data)
+	// 	})
+	// 	done()
+ //  });
 
-		databaseCleaner.clean(database, callback);
-		let dummies = [
-			{
-				username: 'admin',
-				password: bcrypt.hashSync('admin', bcrypt.genSaltSync(10)),
-				id_role: 1
-	    },
-	    {
-				username: 'waiters',
-				password: bcrypt.hashSync('waiters', bcrypt.genSaltSync(10)),
-				id_role: 2
-	    },
-	    {
-				username: 'cashier',
-				password: bcrypt.hashSync('cashier', bcrypt.genSaltSync(10)),
-				id_role: 3
-	    }
-		]
-		dummies.map(data=>{
-			models.Employee.create(data)
-		})
-		done()
-  });
-
-  after((done) => {
-		models.Employee.destroy({})
-		.then(response=>{
-			done()
-		})
-		.catch(err=>{
-			done(err)
-		})
-  });
+ //  after((done) => {
+	// 	models.Employee.destroy({})
+	// 	.then(response=>{
+	// 		done()
+	// 	})
+	// 	.catch(err=>{
+	// 		done(err)
+	// 	})
+ //  });
 
 	describe('Login - Test login with admin access',()=>{
 		it('Should be return role Admin when Admin trying to login',(done)=>{

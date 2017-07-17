@@ -56,7 +56,7 @@ module.exports = {
 			res.json(finalResult)
 		})
 		.catch(err=>{
-			res.json(err)
+			res.json(finalResult)
 		})
 	}
 }
