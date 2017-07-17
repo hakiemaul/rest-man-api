@@ -13,7 +13,7 @@ module.exports={
       message: ''
     }
 
-    let username = req.body.username.toLowerCase()
+    let username = req.body.username
 		models.Employee.findOne({
 			where:{
 				username:username

@@ -26,7 +26,7 @@ module.exports = {
     }
 		if(req.body.username !== "" && req.body.password !== "" & req.body.id_role !== ""){
 			models.Employee.create({
-				username: req.body.username.toLowerCase(),
+				username: req.body.username,
 				password: bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10)),
 				id_role: req.body.id_role
 			})
