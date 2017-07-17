@@ -87,27 +87,29 @@ module.exports = {
 	        updatedAt : new Date()
 	      })
 	      .then((response)=>{
+					var role = ''
+					let id_role = response.dataValues.id_role
 					models.Role.findAll({})
 					.then(responseRole=>{
-						let role = ''
 						responseRole.map(roleValue=>{
-							if(roleValue.dataValues.id === id_role){
+							if(roleValue.dataValues.id === Number(id_role)){
 								role = roleValue.dataValues.type
 								return role
 							}
 						})
-						finalResult.id = response.dataValues.id;
-						finalResult.username = response.dataValues.username;
-						finalResult.password = response.dataValues.password;
-						finalResult.role = role
-						finalResult.success = true
-						finalResult.message = "Employee has been updated"
-						res.json(finalResult)
 					})
 					.catch(err=>{
 						finalResult.message = "Employee Cant updated"
 						res.json(finalResult)
 					})
+					console.log(role)
+					finalResult.id = response.dataValues.id;
+					finalResult.username = response.dataValues.username;
+					finalResult.password = response.dataValues.password;
+					finalResult.role = role
+					finalResult.success = true
+					finalResult.message = "Employee has been updated"
+					res.json(finalResult)
 	      })
 	      .catch((error)=>{
 					finalResult.message = "Employee Cant updated"
