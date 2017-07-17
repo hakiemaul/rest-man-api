@@ -29,7 +29,9 @@ module.exports = {
 	},
 	getDetailOrder: (req, res)=>{
 		models.Order.findOne({
-			id: req.params.id,
+			where : {
+				id: req.params.id
+			},
 		  include: [
 		  	{
 			    model: models.Employee
