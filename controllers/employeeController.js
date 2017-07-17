@@ -24,7 +24,7 @@ module.exports = {
       success: false,
       message: ''
     }
-
+    
 		models.Employee.create({
 			username: req.body.username,
 			password: bcrypt.hashSync(req.body.password, bcrypt.genSaltSync(10)),

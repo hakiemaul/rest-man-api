@@ -2,6 +2,8 @@ const chai = require('chai');
 const chaiHttp = require('chai-http');
 const bcrypt = require('bcrypt');
 require('dotenv').config();
+const DatabaseCleaner = require('database-cleaner');
+const databaseCleaner = new DatabaseCleaner('postgresql');
 
 const models = require('../models')
 const server = require('../app');
@@ -11,6 +13,8 @@ chai.use(chaiHttp);
 
 describe('Auth Test',()=>{
 	before((done) => {
+
+		databaseCleaner.clean(database, callback);
 		let dummies = [
 			{
 				username: 'admin',
