@@ -485,7 +485,7 @@ https://localhost:3000/order
 ]
 ```
 
-### Order - Get All the Order
+### Order - Get Order By ID
 
 ```sh
 GET
