@@ -3,8 +3,8 @@ const models = require('../models')
 
 
 module.exports = {
-	reportDaily : (req, res)=>{
-		var dateNow = new Date(req.body.date)
+	reportYesterday : (req, res)=>{
+		var dateNow = new Date()
 		const milisecond = 24 * 60 * 60 * 1000;
 		const lastDate = Date.parse(dateNow) - milisecond;
 		const resultDate = new Date(lastDate)
