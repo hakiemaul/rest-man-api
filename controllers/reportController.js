@@ -102,7 +102,7 @@ module.exports = {
 				      }
 				});
 				sum.sort(function(a,b){
-					return a.jumlah_qty - b.jumlah_qty
+					return b.jumlah_qty - a.jumlah_qty
 				})
 				var result = {
 					finalResult,
@@ -215,7 +215,7 @@ module.exports = {
 				});
 
 				sum.sort(function(a,b){
-					return a.jumlah_qty - b.jumlah_qty
+					return b.jumlah_qty - a.jumlah_qty
 				})
 
 				var result = {
@@ -329,7 +329,7 @@ module.exports = {
 				});
 
 				sum.sort(function(a,b){
-					return a.jumlah_qty - b.jumlah_qty
+					return  b.jumlah_qty - a.jumlah_qty
 				})
 
 				var result = {
