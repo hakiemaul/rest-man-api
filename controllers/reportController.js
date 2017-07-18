@@ -104,14 +104,11 @@ module.exports = {
 				      }
 				});
 
-				console.log(sum);
-
 				var result = {
 					finalResult,
 					totalTrx,
 					sum
 				}
-				// helperReport.triggerReport(result)
 				res.json(result)
 			})
 			.catch(err=>{

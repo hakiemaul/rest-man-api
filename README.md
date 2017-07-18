@@ -664,3 +664,297 @@ https://localhost:3000/order
     }
 ]
 ```
+
+
+
+### Report - Get Report by Date format "2017-07-18"
+
+```sh
+POST
+
+https://localhost:3000/report/weekly
+```
+
+##### Request
+
+```
+{
+  "date" : "2017-07-18"
+}
+```
+
+##### Response
+
+
+```
+{
+    "finalResult": [
+        {
+            "name": "Trx1",
+            "id_order": 1,
+            "no_meja": "Meja 1",
+            "total_price": 15000,
+            "pay": 30000,
+            "refund": 15000,
+            "createdAt": "2017-07-17T08:48:52.427Z",
+            "menu_order": [
+                {
+                    "id": 5,
+                    "name": "Gado Gado",
+                    "qty_item": 1,
+                    "price": 15000,
+                    "jumlah": 15000
+                }
+            ]
+        },
+        {
+            "name": "Trx2",
+            "id_order": 2,
+            "no_meja": "Meja 2",
+            "total_price": 70000,
+            "pay": 100000,
+            "refund": 30000,
+            "createdAt": "2017-07-17T08:51:02.827Z",
+            "menu_order": [
+                {
+                    "id": 5,
+                    "name": "Gado Gado",
+                    "qty_item": 1,
+                    "price": 15000,
+                    "jumlah": 15000
+                },
+                {
+                    "id": 4,
+                    "name": "Empal Gentong",
+                    "qty_item": 1,
+                    "price": 21000,
+                    "jumlah": 21000
+                },
+                {
+                    "id": 2,
+                    "name": "Fried Chicken",
+                    "qty_item": 2,
+                    "price": 17000,
+                    "jumlah": 34000
+                }
+            ]
+        },
+        {
+            "name": "Trx3",
+            "id_order": 5,
+            "no_meja": "Meja 5",
+            "total_price": 15000,
+            "pay": 20000,
+            "refund": 5000,
+            "createdAt": "2017-07-17T09:31:03.725Z",
+            "menu_order": [
+                {
+                    "id": 5,
+                    "name": "Gado Gado",
+                    "qty_item": 1,
+                    "price": 15000,
+                    "jumlah": 15000
+                }
+            ]
+        },
+        {
+            "name": "Trx4",
+            "id_order": 6,
+            "no_meja": "Meja 3",
+            "total_price": 21000,
+            "pay": 30000,
+            "refund": 9000,
+            "createdAt": "2017-07-17T08:51:48.306Z",
+            "menu_order": [
+                {
+                    "id": 4,
+                    "name": "Empal Gentong",
+                    "qty_item": 1,
+                    "price": 21000,
+                    "jumlah": 21000
+                }
+            ]
+        },
+        {
+            "name": "Trx5",
+            "id_order": 7,
+            "no_meja": "Meja 1",
+            "total_price": 36000,
+            "pay": 50000,
+            "refund": 14000,
+            "createdAt": "2017-07-17T09:30:52.575Z",
+            "menu_order": [
+                {
+                    "id": 5,
+                    "name": "Gado Gado",
+                    "qty_item": 1,
+                    "price": 15000,
+                    "jumlah": 15000
+                },
+                {
+                    "id": 4,
+                    "name": "Empal Gentong",
+                    "qty_item": 1,
+                    "price": 21000,
+                    "jumlah": 21000
+                }
+            ]
+        },
+        {
+            "name": "Trx6",
+            "id_order": 8,
+            "no_meja": "Meja 2",
+            "total_price": 49000,
+            "pay": 50000,
+            "refund": 1000,
+            "createdAt": "2017-07-18T04:39:52.081Z",
+            "menu_order": [
+                {
+                    "id": 5,
+                    "name": "Gado Gado",
+                    "qty_item": 1,
+                    "price": 15000,
+                    "jumlah": 15000
+                },
+                {
+                    "id": 2,
+                    "name": "Fried Chicken",
+                    "qty_item": 2,
+                    "price": 17000,
+                    "jumlah": 34000
+                }
+            ]
+        },
+        {
+            "name": "Trx7",
+            "id_order": 9,
+            "no_meja": "Meja 3",
+            "total_price": 36000,
+            "pay": 0,
+            "refund": 0,
+            "createdAt": "2017-07-18T04:49:30.867Z",
+            "menu_order": [
+                {
+                    "id": 5,
+                    "name": "Gado Gado",
+                    "qty_item": 1,
+                    "price": 15000,
+                    "jumlah": 15000
+                },
+                {
+                    "id": 4,
+                    "name": "Empal Gentong",
+                    "qty_item": 1,
+                    "price": 21000,
+                    "jumlah": 21000
+                }
+            ]
+        },
+        {
+            "name": "Trx8",
+            "id_order": 10,
+            "no_meja": "Meja 1",
+            "total_price": 45000,
+            "pay": 60000,
+            "refund": 15000,
+            "createdAt": "2017-07-17T09:51:40.693Z",
+            "menu_order": [
+                {
+                    "id": 5,
+                    "name": "Gado Gado",
+                    "qty_item": 3,
+                    "price": 15000,
+                    "jumlah": 45000
+                }
+            ]
+        },
+        {
+            "name": "Trx9",
+            "id_order": 11,
+            "no_meja": "Meja 1",
+            "total_price": 71000,
+            "pay": 100000,
+            "refund": 0,
+            "createdAt": "2017-07-18T04:11:48.281Z",
+            "menu_order": [
+                {
+                    "id": 6,
+                    "name": "Ayam Bakar",
+                    "qty_item": 1,
+                    "price": 20000,
+                    "jumlah": 20000
+                },
+                {
+                    "id": 5,
+                    "name": "Gado Gado",
+                    "qty_item": 2,
+                    "price": 15000,
+                    "jumlah": 30000
+                },
+                {
+                    "id": 4,
+                    "name": "Empal Gentong",
+                    "qty_item": 1,
+                    "price": 21000,
+                    "jumlah": 21000
+                }
+            ]
+        },
+        {
+            "name": "Trx10",
+            "id_order": 14,
+            "no_meja": "Meja 6",
+            "total_price": 35000,
+            "pay": 340000,
+            "refund": 305000,
+            "createdAt": "2017-07-18T04:51:31.085Z",
+            "menu_order": [
+                {
+                    "id": 6,
+                    "name": "Ayam Bakar",
+                    "qty_item": 1,
+                    "price": 20000,
+                    "jumlah": 20000
+                },
+                {
+                    "id": 5,
+                    "name": "Gado Gado",
+                    "qty_item": 1,
+                    "price": 15000,
+                    "jumlah": 15000
+                }
+            ]
+        }
+    ],
+    "totalTrx": {
+        "date": "7/18/2017, 12:59:31 PM",
+        "total": 393000
+    },
+    "sum": [
+        {
+            "id": 5,
+            "name": "Gado Gado",
+            "jumlah_qty": 12,
+            "sub_total": 180000
+        },
+        {
+            "id": 4,
+            "name": "Empal Gentong",
+            "jumlah_qty": 5,
+            "sub_total": 105000
+        },
+        {
+            "id": 2,
+            "name": "Fried Chicken",
+            "jumlah_qty": 4,
+            "sub_total": 68000
+        },
+        {
+            "id": 6,
+            "name": "Ayam Bakar",
+            "jumlah_qty": 2,
+            "sub_total": 40000
+        }
+    ]
+}
+```
