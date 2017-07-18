@@ -114,7 +114,6 @@ module.exports = {
 				finalResult.id_employee = response.dataValues.id_employee
 				finalResult.success = true
 				finalResult.message = 'Order Added'
-				console.log(finalResult)
 				res.json(finalResult)
 			})
 			.catch(err=>{

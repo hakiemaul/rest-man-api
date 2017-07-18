@@ -15,6 +15,22 @@ module.exports = {
 			res.json(err);
 		})
 	},
+	getById : (req, res)=>{
+		models.Menu.findOne({
+			where: {
+				id: req.params.id
+			},
+			include: [
+		     { model: models.Category}
+		  ]
+		})
+		.then(response=>{
+			res.json(response);
+		})
+		.catch(err=>{
+			res.json(err);
+		})
+	},
 	addMenu:(req, res)=>{
 		let finalResult = {
       id: null,

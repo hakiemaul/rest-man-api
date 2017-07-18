@@ -23,6 +23,7 @@
     "jsonwebtoken": "^7.4.1",
     "kue": "^0.11.6",
     "mocha": "^3.4.2",
+    "mongoose": "^4.11.3",
     "nodemailer": "^4.0.1",
     "pg": "^6.4.0",
     "pg-hstore": "^2.3.2",
