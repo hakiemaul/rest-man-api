@@ -6,7 +6,7 @@ module.exports = {
 	currentReport : (req, res)=>{
 		var dateNow = new Date()
 		const milisecond = 24 * 60 * 60 * 1000;
-		const lastDate = Date.parse(dateNow) - milisecond;
+		const lastDate = dateNow.getTime() - milisecond;
 		const resultDate = new Date(lastDate)
 
 			models.Transaction.findAll({
@@ -117,8 +117,8 @@ module.exports = {
 	reportDaily : (req, res)=>{
 		var dateNow = new Date(req.body.date)
 		const milisecond = 24 * 60 * 60 * 1000;
-		const lastDate = dateNow - milisecond;
-		const resultDate = Date.parse(lastDate)
+		const lastDate = Date.parse(dateNow) - milisecond;
+		const resultDate = new Date(lastDate)
 		const dayNow = dateNow.getDate()
 		const monthNow = dateNow.getMonth()
 			models.Transaction.findAll({
