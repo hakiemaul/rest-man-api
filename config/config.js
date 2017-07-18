@@ -1,3 +1,4 @@
+require('dotenv').config
 module.exports = {
   "development": {
     // "username": "restman",
@@ -21,15 +22,15 @@ module.exports = {
   "test": {
     "username": "postgres",
     "password": 12345,
-    "database": "db_test_RESTMn",
+    "database": "db_test_RESTMan",
     "host": "localhost",
     "dialect": "postgres"
   },
   "production": {
-    "username": "restman",
-    "password": "restman1",
-    "database": "restman",
-    "host": "restman.crllgb8fv86z.ap-southeast-1.rds.amazonaws.com",
+    "username": process.env.USERNAME,
+    "password": process.env.PASSWORD,
+    "database": process.env.DB_RESTMAN,
+    "host": process.env.HOST_SERVER,
     "dialect": "postgres"
   },
   "postgresql": {

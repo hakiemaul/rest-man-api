@@ -123,5 +123,36 @@ module.exports = {
 		}else{
 			res.json(finalResult)
 		}
+	},
+	deleteOrder: (req, res)=>{
+		var finalResult = {
+			id: null,
+			success:false,
+			message:''
+		}
+		models.MenuOrder.destroy({
+			where:{
+				id_order: req.params.id
+			}
+		})
+		.then(response=>{
+			models.Order.destroy({
+				where:{
+					id:req.params.id
+				}
+			})
+			.then(responseOrder=>{
+				finalResult.id = req.params.id
+				finalResult.success = true
+				finalResult.message = 'You Delete this order with MenuOrder'
+				res.json(finalResult)
+			})
+			.catch(error=>{
+				res.json(finalResult)
+			})
+		})
+		.catch(err=>{
+			res.json(finalResult)
+		})
 	}
 }

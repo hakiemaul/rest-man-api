@@ -10,6 +10,7 @@ const categories = require('./routes/category');
 const menu = require('./routes/menu');
 const orders = require('./routes/order');
 const transactions = require('./routes/transaction');
+const report = require('./routes/report');
 const test = require('./routes/test');
 
 const app = express();
@@ -26,10 +27,29 @@ app.use('/category', categories);
 app.use('/menu', menu);
 app.use('/order', orders);
 app.use('/transaction', transactions);
+app.use('/report', report);
 app.use('/test', test);
+
+
+
+// app.use(function(req, res, next) {
+//   var err = new Error('Not Found');
+//   err.status = 404;
+//   next(err);
+// });
+
+// // error handler
+// app.use(function(err, req, res, next) {
+//   // set locals, only providing error in development
+//   res.locals.message = err.message;
+//   res.locals.error = req.app.get('env') === 'development' ? err : {};
+
+//   // render the error page
+//   res.status(err.status || 500);
+//   res.render('error');
+// });
 
 app.listen(app.get('port'),()=>{
 	console.log("Express Run to http://localhost:"+app.get('port'));
 })
-
 module.exports = app
