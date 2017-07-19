@@ -153,5 +153,85 @@ module.exports = {
 		.catch(err=>{
 			res.json(finalResult)
 		})
+	},
+	editOrder:(req, res)=>{
+		let finalResult = {
+			id: null,
+			no_meja: null,
+			total_price: null,
+			success: false,
+			id_employee: null,
+			message: ''
+		}
+		if(req.body.no_meja !== '' && req.body.id_employee !== '' && req.body.total_price !== ''){
+			models.Order.update(
+				{
+					id_employee: req.body.id_employee,
+					no_meja: req.body.no_meja,
+					total_price: req.body.total_price,
+					updatedAt: new Date()
+				},{
+				where:{
+					id:req.params.id
+				}
+			})
+			.then(response=>{
+				models.MenuOrder.destroy({
+					where:{
+						id_order: req.params.id
+					}
+				})
+				.then(responseMenuOrderDelete=>{
+					let menus = req.body.menu_order
+					var menu_order = []
+
+					menus.map(menu=>{
+						models.MenuOrder.create({
+							id_order : req.params.id,
+							id_menu : menu.id_menu,
+							qty_item : menu.qty_item,
+							total : menu.total,
+							note : menu.note || ''
+						})
+						.then(responseMenuOrder=>{
+							let id_menu_from_MenuOrder = responseMenuOrder.dataValues.id_menu
+							let obj = {
+								name:'',
+								price: null
+							}
+							models.Menu.findAll({})
+							.then(responseMenu=>{
+								responseMenu.map(menu=>{
+									if(menu.dataValues.id === id_menu_from_MenuOrder){
+										return obj = {
+											name:menu.dataValues.name,
+											price: menu.dataValues.price
+										}
+									}
+								})
+								let objMenuOrder = {
+									id_menu : id_menu_from_MenuOrder,
+									name:obj.name,
+									price:obj.price,
+									qty_item : responseMenuOrder.dataValues.qty_item,
+									total : responseMenuOrder.dataValues.total,
+									note : responseMenuOrder.dataValues.note
+								}					
+							})
+						})
+					})
+
+					finalResult.id = req.params.id
+					finalResult.no_meja = req.body.no_meja
+					finalResult.total_price = req.body.total_price
+					finalResult.id_employee = req.body.id_employee
+					finalResult.success = true
+					finalResult.message = 'Order Has Been Updated'
+					res.json(finalResult)
+				})
+			})
+		}else{
+			res.json(finalResult)
+		}
 	}
 }

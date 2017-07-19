@@ -6,5 +6,6 @@ router.get('/',orderController.getAllOrders);
 router.post('/',orderController.addOrder);
 router.get('/:id', orderController.getDetailOrder);
 router.delete('/:id', orderController.deleteOrder);
+router.put('/:id', orderController.editOrder);
 
 module.exports = router
