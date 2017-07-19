@@ -1,10 +1,10 @@
 var mongoose = require('mongoose')
 var Schema = mongoose.Schema;
+require('../config/reportdb')
 
 var reportSchema = new Schema({
-	finalResult : [],
-	totalTrx : [Schema.Types.Mixed],
-	sum : []
-})
+	date: String,
+	reports : Schema.Types.Mixed
+}, {timestamps: true})
 
 module.exports = mongoose.model('Report',reportSchema)

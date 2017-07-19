@@ -13,6 +13,7 @@ const transactions = require('./routes/transaction');
 const report = require('./routes/report');
 const test = require('./routes/test');
 
+const helpersReport = require('./helpers/reportDailyAutomated')
 const app = express();
 
 app.set('port',process.env.PORT || 3000);
@@ -31,7 +32,8 @@ app.use('/report', report);
 app.use('/test', test);
 
 
-
+helpersReport.saveReportsDaily()
+helpersReport.saveReportsWeekly()
 // app.use(function(req, res, next) {
 //   var err = new Error('Not Found');
 //   err.status = 404;

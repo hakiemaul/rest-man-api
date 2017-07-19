@@ -5,6 +5,5 @@ const reportController = require('../controllers/reportController');
 router.get('/current',reportController.currentReport);
 router.post('/daily',reportController.reportDaily);
 router.post('/weekly',reportController.reportWeekly);
-router.post('/monthly', reportController.reportMonthly);
 
 module.exports = router
