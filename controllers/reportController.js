@@ -1,4 +1,3 @@
-const helperReport = require('../helpers/automatedReport');
 const models = require('../models')
 const axios = require('axios')
 
