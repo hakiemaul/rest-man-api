@@ -11,6 +11,7 @@
     "test": "./node_modules/.bin/sequelize db:seed --seed 20170717062133-DeleteAllTable.js &&./node_modules/.bin/sequelize db:migrate && ./node_modules/.bin/sequelize db:seed --seed 20170713061659-DummyRole.js && ./node_modules/.bin/sequelize db:seed --seed 20170713094930-DummyEmployee.js && ./node_modules/.bin/sequelize db:seed --seed 20170717122806-CategoryMenu.js && mocha"
   },
   "dependencies": {
+    "axios": "^0.16.2",
     "bcrypt": "^1.0.2",
     "body-parser": "^1.17.2",
     "chai": "^4.1.0",

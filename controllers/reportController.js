@@ -1,6 +1,6 @@
 const helperReport = require('../helpers/automatedReport');
 const models = require('../models')
-
+const axios = require('axios')
 
 module.exports = {
 	currentReport : (req, res)=>{
@@ -328,13 +328,29 @@ module.exports = {
 				sum.sort(function(a,b){
 					return b.jumlah_qty - a.jumlah_qty
 				})
-
-				var result = {
-					finalResult,
-					totalTrx,
-					sum
-				}
-				res.json(result)
+				axios.get(`https://api.edamam.com/search?q=${sum[0].name}&app_id=c7b09b36&app_key=3385e94ab3afe8bbd307b8d4a619e3c3`)
+				.then(responseSugestion=>{
+					let sugestions = responseSugestion.data.hits
+					var sugestionMenu = []
+					sugestions.map(sugestion=>{
+						let objSugestion = {
+							label : sugestion.recipe.label,
+							ingredient : sugestion.recipe.ingredientLines,
+							url: sugestion.recipe.url
+						}
+						sugestionMenu.push(objSugestion)
+					})
+					var result = {
+						finalResult,
+						totalTrx,
+						sum,
+						sugestionMenu
+					}
+					res.json(result)
+				})
+				.catch(sugesErr=>{
+					console.log(sugesErr)
+				})
 			})
 			.catch(err=>{
 				console.log(err)
