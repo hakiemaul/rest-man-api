@@ -6,9 +6,9 @@ module.exports = {
     // "host": "restman.crllgb8fv86z.ap-southeast-1.rds.amazonaws.com",
     // "dialect": "postgres"
 
-    "username": "postgres",
-    "password": 12345,
-    "database": "db_RESTMan_dev",
+    "username": "james",
+    "password": "james",
+    "database": "RestMan",
     "host": "localhost",
     "dialect": "postgres"
 

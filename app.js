@@ -14,7 +14,7 @@ const test = require('./routes/test');
 
 const app = express();
 
-app.set('port',process.env.PORT || 3000);
+app.set('port',process.env.PORT || 3001);
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended:false}));
