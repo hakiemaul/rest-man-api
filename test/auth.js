@@ -12,62 +12,7 @@ const should = chai.should();
 chai.use(chaiHttp);
 
 describe('Auth Test',()=>{
-	// before((done) => {
-	// 	let dummies = [
-	// 		{
-	// 			username: 'admin',
-	// 			password: bcrypt.hashSync('admin', bcrypt.genSaltSync(10)),
-	// 			id_role: 1
-	//     },
-	//     {
-	// 			username: 'waiters',
-	// 			password: bcrypt.hashSync('waiters', bcrypt.genSaltSync(10)),
-	// 			id_role: 2
-	//     },
-	//     {
-	// 			username: 'cashier',
-	// 			password: bcrypt.hashSync('cashier', bcrypt.genSaltSync(10)),
-	// 			id_role: 3
-	//     }
-	// 	]
-	// 	dummies.map(data=>{
-	// 		models.Employee.create(data)
-	// 	})
-	// 	done()
- //  });
-
- //  after((done) => {
-	// 	models.Employee.destroy({})
-	// 	.then(response=>{
-	// 		done()
-	// 	})
-	// 	.catch(err=>{
-	// 		done(err)
-	// 	})
- //  });
-
 	describe('Login - Test login with admin access',()=>{
-		it('Should be return role Admin when Admin trying to login',(done)=>{
-			chai.request(server)
-			.post('/auth/login')
-			.send({
-				username: 'admin',
-				password: 'admin'
-			})
-			.end((err, res)=>{
-				if(err){
-					res.should.have.status(500);
-					done(err);
-				}else{
-					res.should.have.status(200);
-					res.should.be.json;
-					res.body.username.should.to.equal('admin');
-					res.body.role.should.to.equal('Admin');
-					res.body.success.should.to.equal(true);
-					done();
-				}
-			});
-		});
 
 		it('Should be return all field Admin when Admin trying to login',(done)=>{
 			chai.request(server)
@@ -94,6 +39,29 @@ describe('Auth Test',()=>{
 			});
 		});
 	});
+	
+		it('Should be return role Admin when Admin trying to login',(done)=>{
+			chai.request(server)
+			.post('/auth/login')
+			.send({
+				username: 'admin',
+				password: 'admin'
+			})
+			.end((err, res)=>{
+				if(err){
+					res.should.have.status(500);
+					done(err);
+				}else{
+					res.should.have.status(200);
+					res.should.be.json;
+					res.body.username.should.to.equal('admin');
+					res.body.role.should.to.equal('Admin');
+					res.body.success.should.to.equal(true);
+					done();
+				}
+			});
+		});
+
 
 	describe('Login - Test login with waiters access',()=>{
 		it('Should be return role waiter when waiters trying to login',(done)=>{

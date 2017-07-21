@@ -9,60 +9,7 @@ chai.use(chaiHttp);
 
 describe('Employee Test', ()=>{
 
-  // beforeEach((done) => {
-  //   models.Employee.create({
-		// 		username: 'employee',
-		// 		password: bcrypt.hashSync('employee', bcrypt.genSaltSync(10)),
-		// 		id_role: 2
-  //   })
-  //   .then(response=>{
-  //   	done()
-  //   })
-  //   .catch(err=>{
-  //   	done(err)
-  //   })
-  // });
-
-  // afterEach((done) => {
-		// models.Employee.destroy({})
-		// .then(response=>{
-		// 	done()
-		// })
-		// .catch(err=>{
-		// 	done(err)
-		// })
-  // });
-
-	// describe('Read - Read data employee',()=>{
-	// 	it('Should be return length employee 3 from databases',(done)=>{
-	//     models.Employee.findAll({})
-	//     .then(res=>{
-	//     	res.length.should.equal(3);
-	//     	done()
-	//     })
-	//     .catch(err=>{
-	//     	done(err)
-	//     })
-
-	// 	});
-
-	// 	it('Should be return length employee 3 from url /employee',(done)=>{
-	// 		chai.request(server)
-	// 		.get('/employee')
-	// 		.end((err, res) => {
-	//     	if(err){
-	//     		res.should.have.status(500);
-	//     		done(err);
-	//     	}else{
-	//     		res.should.have.status(200);
-	//     		res.length.should.equal(3);
-	//     		done();
-	//     	}
-	//     });
-	// 	});
-	// });
-
-	describe('Create - Register data employee', ()=>{
+ 	describe('Create - Register data employee', ()=>{
 		it('Should be return all field / property when trying to Register data employee', (done)=>{
 			chai.request(server)
 			.post('/employee')

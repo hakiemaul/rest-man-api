@@ -7,44 +7,34 @@ const models = require('../models');
 chai.use(chaiHttp);
 
 describe('Category Test',()=>{
-  // before((done) => {
-  //   models.Category.create({
-		// 	name: 'Category'
-  //   })
-  //   .then(response=>{
-  //   	done()
-  //   })
-  //   .catch(err=>{
-  //   	done(err)
-  //   })
-  // });
 
-  // after((done) => {
-		// models.Category.destroy({})
-		// .then(response=>{
-		// 	done()
-		// })
-		// .catch(err=>{
-		// 	done(err)
-		// })
-  // });
+	describe('Read - Read data Category',()=>{
+		it('Should be return length Category 2 from databases',(done)=>{
+	    models.Category.findAll({})
+	    .then((res) => {
+	    		res.length.should.equal(2);
+	    		done();
+	    })
+	    .catch(err=>{
+	    	done(err)
+	    });
+		});
 
-  // describe('Read - Read category',()=>{
-  // 	it('Should be return length category 1',(done)=>{
-  // 		chai.request(server)
-		// 	.get('/category')
-		// 	.end((err, res) => {
-	 //    	if(err){
-	 //    		res.should.have.status(500);
-	 //    		done(err);
-	 //    	}else{
-	 //    		res.should.have.status(200);
-	 //    		res.length.should.equal(1);
-	 //    		done();
-	 //    	}
-	 //    });
-  // 	});
-  // });
+		it('Should be return length Category 2 from url /menu',(done)=>{
+			chai.request(server)
+			.get('/category')
+			.end((err, res) => {
+	    	if(err){
+	    		res.should.have.status(500);
+	    		done(err);
+	    	}else{
+	    		res.should.have.status(200);
+	    		res.body.length.should.equal(2);
+	    		done();
+	    	}
+	    });
+		});
+	});
 
   describe('Create - Add category',()=>{
   	it('Should be return all field category when trying to add category',(done)=>{

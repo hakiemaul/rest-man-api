@@ -8,62 +8,7 @@ chai.use(chaiHttp);
 
 describe('Transaction Test', ()=>{
 
- //  beforeEach((done) => {
- //    models.Transaction.create({
-	// 		id_order: 1,
-	// 		pay: 20000,
-	// 		refund: 0
- //    })
- //    .then(response=>{
- //    	done()
- //    })
- //    .catch(err=>{
- //    	done(err)
- //    })
- //  });
-
- //  afterEach((done) => {
-	// 	models.Transaction.destroy({})
- //    .then(response=>{
- //    	done()
- //    })
- //    .catch(err=>{
- //    	done(err)
- //    })
- //  });
-
-	// describe('Read - Read data Transaction',()=>{
-	// 	it('Should be return length Transaction 1 from databases',(done)=>{
-	//     models.Transaction.findAll()
-	//     .then((err, res) => {
-	//     	if(err){
-	//     		res.should.have.status(500);
-	//     		done(err);
-	//     	}else{
-	//     		res.should.have.status(200);
-	//     		res.length.should.equal(1);
-	//     		done();
-	//     	}
-	//     });
-	// 	});
-
-	// 	it('Should be return length Transaction 1 from url /transaction',(done)=>{
-	// 		chai.request(server)
-	// 		.get('/transaction')
-	// 		.end((err, res) => {
-	//     	if(err){
-	//     		res.should.have.status(500);
-	//     		done(err);
-	//     	}else{
-	//     		res.should.have.status(200);
-	//     		res.length.should.equal(1);
-	//     		done();
-	//     	}
-	//     });
-	// 	});
-	// });
-
-	describe('Create - Add Transaction', ()=>{
+ 	describe('Create - Add Transaction', ()=>{
 		it('Should be return all field / property when trying to Add data Transaction', (done)=>{
 			chai.request(server)
 			.post('/transaction')

@@ -8,60 +8,6 @@ chai.use(chaiHttp);
 
 describe('Menu Test', ()=>{
 
-  // before((done) => {
-  //   models.Menu.create({
-		// 	name: 'Test Menu',
-		// 	description: 'Test Menu',
-		// 	price: 20000
-  //   })
-  //   .then(response=>{
-  //   	done()
-  //   })
-  //   .catch(err=>{
-  //   	done(err)
-  //   })
-  // });
-
-  // after((done) => {
-		// models.Menu.destroy({})
-  //   .then(response=>{
-  //   	done()
-  //   })
-  //   .catch(err=>{
-  //   	done(err)
-  //   })
-  // });
-
-	// describe('Read - Read data Menu',()=>{
-	// 	it('Should be return length Menu 1 from databases',(done)=>{
-	//     models.Menu.findAll({})
-	//     .then((res) => {
-	//     	if(err){
-	//     		done(err);
-	//     	}else{
-	//     		res.should.have.status(200);
-	//     		res.length.should.equal(1);
-	//     		done();
-	//     	}
-	//     });
-	// 	});
-
-	// 	it('Should be return length Menu 1 from url /menu',(done)=>{
-	// 		chai.request(server)
-	// 		.get('/menu')
-	// 		.end((err, res) => {
-	//     	if(err){
-	//     		res.should.have.status(500);
-	//     		done(err);
-	//     	}else{
-	//     		res.should.have.status(200);
-	//     		res.length.should.equal(1);
-	//     		done();
-	//     	}
-	//     });
-	// 	});
-	// });
-
 	describe('Create - Add Menu', ()=>{
 		it('Should be return all field / property when trying to Add data Menu', (done)=>{
 			chai.request(server)
